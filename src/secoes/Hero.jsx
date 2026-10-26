@@ -67,7 +67,7 @@ export default function Hero() {
 
       <div className="contentor hero-grelha">
         <div className="hero-texto">
-          <motion.p className="eyebrow" {...subir(0.1)}>Nº5 Agentic OS · Lançamento a 1 de dezembro</motion.p>
+          <motion.p className="eyebrow" {...subir(0.1)}>N5 Imobiliário · Lançamento a 1 de dezembro</motion.p>
           <motion.h1 {...subir(0.2)}>O sistema operativo da tua agência imobiliária.</motion.h1>
           <motion.p className="hero-lead" {...subir(0.35)}>
             Do primeiro contacto à comissão paga, num só sítio. Os agentes de IA tratam do trabalho repetitivo. A tua equipa fecha negócios.

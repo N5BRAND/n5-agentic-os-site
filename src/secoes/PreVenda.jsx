@@ -95,7 +95,7 @@ function Formulario() {
             </div>
             <label className={`consentimento ${erros.consentimento ? 'campo--erro' : ''}`}>
               <input type="checkbox" name="consentimento" checked={d.consentimento} onChange={muda} />
-              <span>Autorizo a Nº 5 a guardar estes dados e a contactar-me sobre a pré-venda do Agentic OS.</span>
+              <span>Autorizo a Nº 5 a guardar estes dados e a contactar-me sobre a pré-venda do N5 Imobiliário.</span>
             </label>
             {erros.consentimento && <small className="erro-solto">{erros.consentimento}</small>}
             <button className="botao prevenda-botao" type="submit" disabled={estado === 'a-enviar'}>
@@ -118,7 +118,8 @@ export default function PreVenda() {
           <h2>1 de dezembro. O sistema completo, de uma vez.</h2>
           <p className="prevenda-lead">
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-            Antes disso, abrimos a pré-venda a quem está na lista de espera.
+            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto numa das 200 licenças
+            reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
           </p>
           <div className="prevenda-oferta">
             <motion.div
@@ -139,6 +140,16 @@ export default function PreVenda() {
             >
               <span>50%</span>
               <small>de desconto nessas licenças</small>
+            </motion.div>
+            <motion.div
+              className="prevenda-oferta-num prevenda-oferta-num--formacao"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <span>12</span>
+              <small>formações por ano sobre o sistema, incluídas</small>
             </motion.div>
           </div>
           <Contagem />

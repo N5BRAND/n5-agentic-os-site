@@ -5,7 +5,7 @@ export default function Rodape() {
     <footer className="rodape">
       <div className="contentor rodape-linha">
         <Simbolo largura={56} />
-        <p className="rodape-nota">Nº5 Agentic OS</p>
+        <p className="rodape-nota">N5 Imobiliário</p>
       </div>
     </footer>
   )

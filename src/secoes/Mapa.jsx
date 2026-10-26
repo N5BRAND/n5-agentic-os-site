@@ -2,7 +2,7 @@ import { motion, AnimatePresence, useInView } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import Simbolo from '../marca/Simbolo.jsx'
 
-/* o polvo: o Agentic OS ao centro e um tentáculo para cada coisa que liga */
+/* o polvo: o N5 Imobiliário ao centro e um tentáculo para cada coisa que liga */
 const CENTRO = { x: 500, y: 300 }
 const NOS = [
   { id: 'ia', x: 160, y: 86, titulo: 'ChatGPT e Claude', curto: 'ChatGPT e Claude', texto: 'Perguntas ao sistema e mexes nos teus negócios a partir do teu assistente, só com as tuas permissões.' },
@@ -53,7 +53,7 @@ export default function Mapa() {
       <div className="contentor">
         <div className="seccao-cabeca">
           <p className="eyebrow">Como tudo se liga</p>
-          <h2>O Agentic OS ao centro. Tudo à volta, ligado.</h2>
+          <h2>O N5 Imobiliário ao centro. Tudo à volta, ligado.</h2>
           <p>Como um polvo: cada braço liga a uma parte da tua agência. A informação passa de uns para os outros sem ninguém ter de a levar.</p>
         </div>
 
@@ -103,7 +103,7 @@ export default function Mapa() {
             transition={{ type: 'spring', stiffness: 140, damping: 14 }}
           >
             <Simbolo largura={74} />
-            <b>Agentic OS</b>
+            <b>N5 Imobiliário</b>
           </motion.div>
 
           {NOS.map((n, i) => {
