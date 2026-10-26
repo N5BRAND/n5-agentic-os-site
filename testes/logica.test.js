@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { cenaDe } from '../src/logica/linha-tempo.js'
+import { cenaDe, passoDe } from '../src/logica/linha-tempo.js'
 import { validarInscricao } from '../src/logica/validar.js'
 import { LANCAMENTO, tempoAte } from '../src/logica/contagem.js'
 import { codificar } from '../src/logica/netlify.js'
@@ -23,6 +23,21 @@ describe('cenaDe', () => {
     const r = cenaDe(0.25, 2)
     expect(r.indice).toBe(0)
     expect(r.avanco).toBeCloseTo(0.5)
+  })
+})
+
+describe('passoDe', () => {
+  it('o primeiro passo aparece logo à entrada da cena', () => {
+    expect(passoDe(0, 4)).toBe(1)
+  })
+  it('avança um passo por cada fração da cena', () => {
+    expect(passoDe(0.26, 4)).toBe(2)
+    expect(passoDe(0.5, 4)).toBe(3)
+  })
+  it('o último passo fica à vista até ao fim', () => {
+    expect(passoDe(0.8, 4)).toBe(4)
+    expect(passoDe(1, 4)).toBe(4)
+    expect(passoDe(NaN, 4)).toBe(1)
   })
 })
 

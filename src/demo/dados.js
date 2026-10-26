@@ -14,6 +14,8 @@ export const NEGOCIO = {
 export const CENAS = [
   {
     id: 'lead',
+    curto: 'Lead',
+    passos: 4,
     ilustrativo: true,
     eyebrow: '01 · Lead nova',
     titulo: 'A lead entra. O agente responde em segundos.',
@@ -29,6 +31,8 @@ export const CENAS = [
   },
   {
     id: 'coach',
+    curto: 'Chamada',
+    passos: 6,
     ilustrativo: true,
     eyebrow: '02 · Chamada com coach',
     titulo: 'O consultor liga. A IA ouve e diz-lhe como fechar.',
@@ -53,6 +57,8 @@ export const CENAS = [
   },
   {
     id: 'reuniao',
+    curto: 'Reunião',
+    passos: 3,
     ilustrativo: true,
     eyebrow: '03 · Reunião',
     titulo: 'Sábado, 11h. A reunião que o agente ajudou a marcar.',
@@ -61,6 +67,8 @@ export const CENAS = [
   },
   {
     id: 'orquestrador',
+    curto: 'Proposta',
+    passos: 4,
     ilustrativo: true,
     eyebrow: '04 · Proposta aceite',
     titulo: 'Proposta aceite. O orquestrador dispara as passagens.',
@@ -74,6 +82,8 @@ export const CENAS = [
   },
   {
     id: 'documento',
+    curto: 'Documento',
+    passos: 4,
     ilustrativo: true,
     eyebrow: '05 · Documento em falta',
     titulo: 'Falta um documento. Toda a gente sabe na hora.',
@@ -86,10 +96,13 @@ export const CENAS = [
       { doc: 'Comprovativo da origem dos fundos', ok: false },
     ],
     alertaConsultor: 'Falta o comprovativo da origem dos fundos da Marta para o CPCV de dia 14.',
+    resposta: 'comprovativo-fundos.pdf',
     whatsapp: 'Olá Marta! Para avançarmos com o CPCV do T3 em Benfica falta o comprovativo da origem dos fundos. Pode enviá-lo por aqui?',
   },
   {
     id: 'broker',
+    curto: 'Broker',
+    passos: 4,
     ilustrativo: true,
     eyebrow: '06 · Tudo junto',
     titulo: 'O broker vê a agência inteira. Sem perguntar a ninguém.',
