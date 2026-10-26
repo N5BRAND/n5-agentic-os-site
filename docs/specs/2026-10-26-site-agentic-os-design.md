@@ -49,19 +49,22 @@ Os apertos de mão são ilustrações SVG próprias animadas com Motion, no esti
 
 - Lançamento a 1 de dezembro de 2026.
 - Antes disso há uma pré-venda; quem está na lista de espera é avisado primeiro.
-- Os primeiros pacotes têm até 50% de desconto antes do lançamento.
+- 200 licenças reservadas com 50% de desconto.
 - Contagem decrescente até 1 de dezembro.
 - Formulário: nome, email, telefone, nome da agência, número de consultores, consentimento RGPD obrigatório. Sem pré-preenchimento.
 - Envio por Netlify Forms (sem chaves no site). Mais tarde pode reencaminhar-se para o GHL por webhook.
+- Campo obrigatório: licença AMI.
 - Depois de enviar: mensagem de confirmação na própria página.
 
-### Etiquetas de lançamento
+### Atualização de 26/10 (feedback do Pedro)
 
-Cada módulo mostrado fora da demo leva uma etiqueta:
-- «1 de dezembro»: resposta automática a leads, coach de chamadas, resumo semanal ao broker.
-- «A seguir»: crédito, jurídico, financeiro, comunicação entre departamentos, relatório ao proprietário, cruzamento de compradores e imóveis, ecrã do investidor.
-
-A divisão acima é a proposta por omissão e tem de ser confirmada pelo Pedro antes de publicar.
+- Tudo é lançado a 1 de dezembro, de uma vez. Não há etiquetas «A seguir».
+- Reservámos 200 licenças com 50% de desconto para a lista de espera.
+- O formulário pede a licença AMI da agência (obrigatória, guardada só com os dígitos).
+- Os três eixos ganham uma secção própria: o scroll envolve cada um em dourado, um de cada vez.
+- A demo é um caminho na rua: o cenário desliza com o scroll, com uma paragem por cena. A lead aparece a tocar no telemóvel, o consultor com auscultadores na chamada, consultor e lead à mesa a conversar, e um agente de IA a falar com cada departamento na proposta.
+- O mapa do sistema passa a polvo: o Agentic OS ao centro, um braço para o ChatGPT e Claude, o copiloto no CRM, as conversas, os portais e cada departamento, com a passagem ativa a circular.
+- Os três perfis são percursos animados pelo scroll: matching, entraves com sugestões, CPCV e AML, escritura e comissão.
 
 ## Marca
 
@@ -79,7 +82,7 @@ Segue a skill `marca-numero5`:
 
 ## Técnica
 
-- Projeto `n5-software-site/` com Vite, React e `motion` (versão fixa do npm). O clone `motion/` serve só de referência.
+- Projeto `Website/` com Vite, React e `motion` (versão fixa do npm). O clone `motion/` serve só de referência.
 - Componentes por secção (`src/secoes/`) e por cena da demo (`src/demo/cenas/`); os dados ilustrativos num só ficheiro (`src/demo/dados.js`); a lógica que converte progresso de scroll em cena numa função pura (`src/demo/linha-tempo.js`).
 - `prefers-reduced-motion`: as cenas aparecem empilhadas e estáticas, com o mesmo conteúdo.
 - Telemóvel: o palco fixo passa a uma coluna, a ficha encolhe e as passagens descem em vez de voar para os lados.
