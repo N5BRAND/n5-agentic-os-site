@@ -155,7 +155,6 @@ export default function Demo() {
           <div className="demo-cena-area">
             <div className="demo-cena-topo">
               <Ficha indice={estado.indice} />
-              <span className="etiqueta">Dados ilustrativos</span>
             </div>
             <AnimatePresence mode="wait" custom={estado.dir} initial={false}>
               <motion.div
@@ -172,6 +171,7 @@ export default function Demo() {
               </motion.div>
             </AnimatePresence>
           </div>
+          <span className="etiqueta demo-ilustrativo">Dados ilustrativos</span>
         </div>
       </div>
     </section>

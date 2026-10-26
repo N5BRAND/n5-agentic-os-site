@@ -20,7 +20,7 @@ function Onda({ viva }) {
 export default function CenaCoach({ cena, passo }) {
   const emChamada = passo <= 2
   return (
-    <div className="cena cena-coach">
+    <div className="cena cena-coach" data-fase={passo >= 5 ? 'pipeline' : passo >= 4 ? 'proximo' : 'chamada'}>
       <div className="coach-esq">
         <Revela ver={passo >= 1} className="cartao chamada">
           <div className="chamada-topo">

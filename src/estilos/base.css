@@ -70,9 +70,9 @@ button { font: inherit; color: inherit; }
 
 .seccao { padding-block: clamp(80px, 12vw, 160px); }
 .seccao-cabeca { display: grid; gap: 18px; max-width: 760px; margin-bottom: clamp(40px, 6vw, 72px); }
-.seccao-cabeca p { font-size: clamp(17px, 1.6vw, 20px); color: var(--suave); }
+.seccao-cabeca p:not(.eyebrow) { font-size: clamp(17px, 1.6vw, 20px); color: var(--suave); }
 .escuro { background: var(--tinta); color: var(--creme); }
-.escuro .seccao-cabeca p { color: rgba(245, 244, 240, 0.72); }
+.escuro .seccao-cabeca p:not(.eyebrow) { color: rgba(245, 244, 240, 0.72); }
 
 .botao {
   display: inline-flex; align-items: center; gap: 10px;
@@ -100,6 +100,7 @@ button { font: inherit; color: inherit; }
   white-space: nowrap;
 }
 .etiqueta--seguir { background: rgba(21, 24, 29, 0.07); color: var(--suave); }
+.escuro .etiqueta { background: rgba(232, 161, 60, 0.18); color: var(--dourado); }
 .escuro .etiqueta--seguir { background: rgba(245, 244, 240, 0.1); color: rgba(245, 244, 240, 0.7); }
 
 .cartao {

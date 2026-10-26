@@ -41,12 +41,15 @@
 .demo-indice button.ativo .demo-indice-n { color: var(--dourado); }
 
 .demo-cena-area { display: grid; gap: 16px; align-content: center; min-width: 0; }
-.demo-cena-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.demo-cena-topo { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.demo-ilustrativo { position: absolute; right: var(--gutter); bottom: 18px; z-index: 2; }
+.demo-grelha { position: relative; }
 .demo-cena { min-height: 460px; display: grid; align-items: center; }
 
 /* ===== ficha ===== */
 .ficha {
-  display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  max-width: 100%; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 12px; flex-wrap: nowrap; white-space: nowrap;
   padding: 10px 16px; border-radius: 999px;
   background: var(--tinta); color: var(--creme);
   font-size: 14px;
@@ -207,11 +210,16 @@
   .demo-indice-nome { display: none; }
   .demo-indice button.ativo .demo-indice-nome { display: inline; }
   .demo-cena { min-height: 0; }
-  .demo-cena-topo .etiqueta { display: none; }
+  .demo-ilustrativo { right: 12px; bottom: 12px; font-size: 10px; padding: 4px 8px; }
   .ficha { font-size: 12px; padding: 7px 12px; gap: 8px; }
   .ficha-rotulo { display: none; }
   .cena-lead, .cena-coach, .cena-doc { grid-template-columns: 1fr; gap: 10px; }
-  .lead-metrica, .transcricao, .coach-pipeline, .briefing { display: none; }
+  .lead-metrica, .transcricao, .briefing { display: none; }
+  /* no coach, cada bloco dá lugar ao seguinte para caber tudo no ecrã */
+  .cena-coach[data-fase='proximo'] .chamada,
+  .cena-coach[data-fase='pipeline'] .chamada,
+  .cena-coach[data-fase='pipeline'] .coach-bloco { display: none; }
+  .coach-numeros .numero { font-size: 28px; }
   .chamada { padding: 12px; gap: 10px; }
   .onda { height: 26px; }
   .conversa, .coach, .checklist { padding: 14px; gap: 10px; }
@@ -220,7 +228,10 @@
   .orq-departamentos { gap: 8px; }
   .orq-dep { padding: 10px; font-size: 12px; }
   .orq-dep h3 { font-size: 15px; }
-  .orq-leva { display: none; }
+  .orq-leva { font-size: 11px; line-height: 1.35; }
+  .orq-leva .eyebrow { font-size: 10px; letter-spacing: 0.1em; }
+  .orq-proposta { padding: 12px 20px; }
+  .orq-voo { height: 30px; }
   .broker-grelha { grid-template-columns: 1fr; }
   .check { font-size: 13px; padding: 5px 8px; }
   .notificacao, .whatsapp-corpo { font-size: 13px; }
