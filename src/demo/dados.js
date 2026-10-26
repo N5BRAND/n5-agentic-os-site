@@ -1,4 +1,4 @@
-/* conteúdo da demo: um negócio do início ao fim. Tudo ilustrativo (nomes, números, mensagens). */
+/* conteúdo da demo: um negócio do início ao fim. */
 
 export const PESSOAS = {
   lead: { nome: 'Marta Silva', iniciais: 'MS' },
@@ -16,7 +16,6 @@ export const CENAS = [
     id: 'lead',
     curto: 'Lead',
     passos: 4,
-    ilustrativo: true,
     eyebrow: '01 · Lead nova',
     titulo: 'A lead entra. O agente responde em segundos.',
     texto: 'Às 23h de um domingo ou às 9h de uma segunda, a resposta sai na hora. O agente qualifica a lead e passa-a ao consultor certo.',
@@ -33,7 +32,6 @@ export const CENAS = [
     id: 'coach',
     curto: 'Chamada',
     passos: 6,
-    ilustrativo: true,
     eyebrow: '02 · Chamada com coach',
     titulo: 'O consultor liga. A IA ouve e diz-lhe como fechar.',
     texto: 'Cada chamada é transcrita e analisada. No fim, o consultor sabe o que correu bem, o que mudar e qual o próximo passo para marcar a reunião.',
@@ -59,7 +57,6 @@ export const CENAS = [
     id: 'reuniao',
     curto: 'Reunião',
     passos: 4,
-    ilustrativo: true,
     eyebrow: '03 · Reunião',
     titulo: 'Sábado, 11h. Consultor e lead à mesma mesa.',
     texto: 'O consultor chega preparado: histórico da lead, o que ela procura e o que dizer. Fica livre para o que só ele faz bem.',
@@ -74,7 +71,6 @@ export const CENAS = [
     id: 'orquestrador',
     curto: 'Proposta',
     passos: 4,
-    ilustrativo: true,
     eyebrow: '04 · Proposta aceite',
     titulo: 'Proposta aceite. O orquestrador dispara as passagens.',
     texto: 'Uma só ficha do negócio. Cada departamento recebe só o que precisa, com a tarefa já preparada.',
@@ -89,7 +85,6 @@ export const CENAS = [
     id: 'documento',
     curto: 'Documento',
     passos: 4,
-    ilustrativo: true,
     eyebrow: '05 · Documento em falta',
     titulo: 'Falta um documento. Toda a gente sabe na hora.',
     texto: 'O jurídico deteta o que falta. O consultor recebe o alerta e a lead recebe o pedido no WhatsApp, ao mesmo tempo.',
@@ -108,7 +103,6 @@ export const CENAS = [
     id: 'broker',
     curto: 'Broker',
     passos: 4,
-    ilustrativo: true,
     eyebrow: '06 · Tudo junto',
     titulo: 'O broker vê a agência inteira. Sem perguntar a ninguém.',
     texto: 'Funil, previsão de faturação e comissões a caminho, num só ecrã. Broker e consultor, finalmente em sintonia.',

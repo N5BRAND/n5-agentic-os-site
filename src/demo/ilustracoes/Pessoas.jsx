@@ -91,7 +91,7 @@ export function Agente({ largura = 110, fala = false }) {
         transition={{ duration: 0.8, repeat: Infinity }}
       />
       <path d="M14 150 C 14 112, 34 100, 60 100 C 86 100, 106 112, 106 150 Z" fill={DOURADO} stroke={TINTA} strokeWidth="4" />
-      <text x="60" y="134" textAnchor="middle" fontFamily="Courier New, monospace" fontWeight="700" fontSize="16" fill={TINTA}>IA</text>
+      <text x="60" y="134" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="16" fill={TINTA}>IA</text>
       <rect x="22" y="28" width="76" height="66" rx="22" fill={TINTA} />
       <rect x="31" y="38" width="58" height="44" rx="14" fill="#2A2E36" />
       <motion.g

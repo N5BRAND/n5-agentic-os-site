@@ -29,7 +29,7 @@ function PainelVivo() {
   return (
     <div className="painel-vivo" aria-hidden="true">
       <div className="painel-vivo-cabeca">
-        <span className="pulso" /> Agentes a trabalhar <span className="etiqueta">Ilustrativo</span>
+        <span className="pulso" /> Agentes a trabalhar
       </div>
       <ul>
         <AnimatePresence initial={false} mode="popLayout">

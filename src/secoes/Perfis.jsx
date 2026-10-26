@@ -140,7 +140,6 @@ export default function Perfis() {
             </Cartao>
           </div>
         </div>
-        <p className="contentor perfis-nota">Valores ilustrativos.</p>
       </div>
     </section>
   )

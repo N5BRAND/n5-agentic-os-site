@@ -78,7 +78,6 @@
 .ecras-alerta .eyebrow { color: var(--dourado); }
 .ecras-alerta p { font-family: var(--titulo); font-weight: 700; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.02em; line-height: 1.2; }
 .ecras-tempo { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--dourado); transform-origin: 0 50%; }
-.ecras-nota { margin-top: 12px; font-size: 13px; color: var(--suave); }
 @media (max-width: 760px) { .ecras-colunas { grid-template-columns: 1fr; } }
 
 /* ===== mapa: o polvo ===== */
@@ -160,7 +159,6 @@
 .perfis-partilha { display: flex; gap: 3px; }
 .perfis-partilha i { font-style: normal; font-size: 11px; font-weight: 700; text-align: center; padding: 5px 0; border-radius: 6px; background: var(--dourado); color: var(--tinta); }
 .perfis-partilha i + i { background: var(--creme); }
-.perfis-nota { margin-top: 18px; font-size: 13px; color: var(--suave); }
 @media (max-width: 900px) {
   .perfis-palco { padding-top: 64px; align-content: start; }
   .perfis-grelha { grid-template-columns: 1fr; gap: 10px; padding-top: 16px; }
@@ -227,5 +225,3 @@
 .rodape { background: var(--creme); padding: 48px 0 32px; border-top: 1px solid var(--linha); }
 .rodape-linha { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .rodape-nota { color: var(--suave); font-size: 14px; }
-.rodape-base { margin-top: 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; }
-.rodape-base a { text-decoration: none; }

@@ -13,7 +13,6 @@
 .rua { position: absolute; inset: 0; overflow: hidden; }
 .rua-mundo { position: absolute; left: 0; bottom: 0; overflow: visible; }
 .rua-caminhante { position: absolute; left: 50%; bottom: 3%; height: 46%; width: auto; aspect-ratio: 40 / 70; translate: -50% 0; overflow: visible; }
-.demo-ilustrativo { position: absolute; top: 8px; right: var(--gutter); z-index: 2; }
 .demo-progresso {
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: var(--dourado); transform-origin: 0 50%;
@@ -250,7 +249,6 @@
   .demo-indice-nome { display: none; }
   .demo-indice button.ativo .demo-indice-nome { display: inline; }
   .demo-cena { min-height: 0; }
-  .demo-ilustrativo { right: 12px; top: 6px; font-size: 9px; padding: 3px 7px; }
   .demo-rua { height: 88px; }
   .lead-pessoa svg { width: 92px; }
   .lead-pessoa .pessoa-nome { font-size: 12px; }

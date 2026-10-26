@@ -104,7 +104,6 @@ export default function Ecras() {
             <motion.div key={ativo} className="ecras-tempo" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 4.2, ease: 'linear' }} />
           )}
         </div>
-        <p className="ecras-nota">Alertas ilustrativos.</p>
       </div>
     </section>
   )

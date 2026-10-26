@@ -70,7 +70,6 @@ function DemoEstatica() {
   return (
     <section id="demo" className="demo-estatica seccao">
       <div className="contentor">
-        <span className="etiqueta">Dados ilustrativos</span>
         {CENAS.map((c, i) => {
           const C = COMPONENTES[c.id]
           return (
@@ -175,7 +174,6 @@ export default function Demo() {
         </div>
         <div className="demo-rua">
           <Rua progresso={barra} indice={estado.indice} nomes={CENAS.map(c => c.curto)} />
-          <span className="etiqueta demo-ilustrativo">Dados ilustrativos</span>
         </div>
       </div>
     </section>

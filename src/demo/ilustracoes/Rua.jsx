@@ -174,7 +174,7 @@ export default function Rua({ progresso, indice, nomes }) {
           <g key={n} transform={`translate(${paragem(i) + 112} ${CHAO - 44})`}>
             <rect x="-2" y="0" width="4" height="44" fill={TINTA} />
             <rect x="-50" y="-24" width="100" height="22" rx="6" fill={i === indice ? DOURADO : CREME} stroke={TINTA} strokeWidth="2.5" />
-            <text x="0" y="-9" textAnchor="middle" fontFamily="Courier New, monospace" fontWeight="700" fontSize="10.5" fill={TINTA}>
+            <text x="0" y="-9" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="10.5" fill={TINTA}>
               {String(i + 1).padStart(2, '0')} {n.toUpperCase()}
             </text>
           </g>
