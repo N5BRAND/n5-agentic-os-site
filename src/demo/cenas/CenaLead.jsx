@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react'
 import { useEffect, useState } from 'react'
 import Revela from '../Revela.jsx'
+import { Pessoa } from '../ilustracoes/Pessoas.jsx'
 
 /* a mensagem do agente começa com «a escrever» e só depois mostra o texto */
 function MensagemAgente({ texto }) {
@@ -29,22 +30,34 @@ export default function CenaLead({ cena, passo }) {
   const [m1, m2, m3] = cena.mensagens
   return (
     <div className="cena cena-lead">
-      <div className="cartao conversa">
-        <Revela ver={passo >= 1} className="conversa-topo">
-          <span className="avatar">MS</span>
-          <div>
-            <b>Marta Silva</b>
-            <span className="suave">{cena.origem}</span>
-          </div>
-          <span className="etiqueta">Lead nova</span>
+      <div className="lead-palco">
+        <Revela ver className="lead-pessoa" de={30}>
+          <Pessoa largura={150} cor="#E8A13C" cabelo="comprido" acessorio="telemovel" toque={passo === 1} />
+          <span className="pessoa-nome"><b>Marta</b> lead</span>
         </Revela>
-        <div className="conversa-corpo">
-          <Revela ver={passo >= 1} atraso={0.15} className="bolha bolha--lead">{m1.texto}</Revela>
-          <Revela ver={passo >= 2} className="bolha-linha">
-            {passo >= 2 && <MensagemAgente texto={m2.texto} />}
-          </Revela>
-          <Revela ver={passo >= 3} className="bolha bolha--lead">{m3.texto}</Revela>
-        </div>
+        <motion.div
+          className="telefone"
+          initial={{ opacity: 0, scale: 0.85, rotate: -4 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 160, damping: 18, delay: 0.25 }}
+        >
+          <div className="telefone-ecra">
+            <div className="conversa-topo">
+              <span className="avatar">N5</span>
+              <div>
+                <b>Agência</b>
+                <span className="suave">{cena.origem}</span>
+              </div>
+            </div>
+            <div className="conversa-corpo">
+              <Revela ver={passo >= 1} atraso={0.45} className="bolha bolha--lead">{m1.texto}</Revela>
+              <Revela ver={passo >= 2} className="bolha-linha">
+                {passo >= 2 && <MensagemAgente texto={m2.texto} />}
+              </Revela>
+              <Revela ver={passo >= 3} className="bolha bolha--lead">{m3.texto}</Revela>
+            </div>
+          </div>
+        </motion.div>
       </div>
       <div className="lead-lado">
         <Revela ver={passo >= 2} atraso={0.7} className="cartao lead-metrica">

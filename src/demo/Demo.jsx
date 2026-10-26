@@ -8,6 +8,7 @@ import CenaReuniao from './cenas/CenaReuniao.jsx'
 import CenaOrquestrador from './cenas/CenaOrquestrador.jsx'
 import CenaDocumento from './cenas/CenaDocumento.jsx'
 import CenaBroker from './cenas/CenaBroker.jsx'
+import Rua from './ilustracoes/Rua.jsx'
 
 const COMPONENTES = {
   lead: CenaLead,
@@ -171,6 +172,9 @@ export default function Demo() {
               </motion.div>
             </AnimatePresence>
           </div>
+        </div>
+        <div className="demo-rua">
+          <Rua progresso={barra} indice={estado.indice} nomes={CENAS.map(c => c.curto)} />
           <span className="etiqueta demo-ilustrativo">Dados ilustrativos</span>
         </div>
       </div>

@@ -58,12 +58,17 @@ export const CENAS = [
   {
     id: 'reuniao',
     curto: 'Reunião',
-    passos: 3,
+    passos: 4,
     ilustrativo: true,
     eyebrow: '03 · Reunião',
-    titulo: 'Sábado, 11h. A reunião que o agente ajudou a marcar.',
+    titulo: 'Sábado, 11h. Consultor e lead à mesma mesa.',
     texto: 'O consultor chega preparado: histórico da lead, o que ela procura e o que dizer. Fica livre para o que só ele faz bem.',
     briefing: ['Família com 2 filhos, mudança em julho', 'Orçamento até 380 mil €', 'Escola a menos de 10 min é decisivo'],
+    conversa: [
+      { de: 'consultor', texto: 'Encontrei três casas a menos de 10 minutos da escola.' },
+      { de: 'lead', texto: 'A de Benfica tem o quarto que nos falta!' },
+      { de: 'consultor', texto: 'Então fazemos a proposta hoje?' },
+    ],
   },
   {
     id: 'orquestrador',
@@ -75,9 +80,9 @@ export const CENAS = [
     texto: 'Uma só ficha do negócio. Cada departamento recebe só o que precisa, com a tarefa já preparada.',
     proposta: '365 000 €',
     passagens: [
-      { para: 'Crédito', leva: 'Perfil, valor da proposta, entrada disponível', prepara: 'Processo de crédito aberto' },
-      { para: 'Jurídico', leva: 'Partes, imóvel, sinal, data do CPCV', prepara: 'Dossier aberto com checklist' },
-      { para: 'Financeiro', leva: 'Valor, partilhas, data prevista', prepara: 'Comissão prevista registada' },
+      { para: 'Crédito', fala: 'A Marta quer avançar. Abre o processo de crédito.', leva: 'Perfil, valor da proposta, entrada disponível', prepara: 'Processo de crédito aberto' },
+      { para: 'Jurídico', fala: 'Proposta aceite. Prepara o dossier do CPCV.', leva: 'Partes, imóvel, sinal, data do CPCV', prepara: 'Dossier aberto com checklist' },
+      { para: 'Financeiro', fala: 'Regista a comissão prevista deste negócio.', leva: 'Valor, partilhas, data prevista', prepara: 'Comissão prevista registada' },
     ],
   },
   {

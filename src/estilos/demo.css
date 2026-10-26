@@ -3,10 +3,17 @@
 .demo-palco {
   position: sticky; top: 0;
   height: 100vh; height: 100svh;
-  display: flex; align-items: center;
+  display: flex; flex-direction: column;
   overflow: hidden;
-  padding-top: 72px;
+  padding-top: 68px;
 }
+
+/* ===== rua ===== */
+.demo-rua { position: relative; flex: none; height: clamp(92px, 17vh, 156px); }
+.rua { position: absolute; inset: 0; overflow: hidden; }
+.rua-mundo { position: absolute; left: 0; bottom: 0; overflow: visible; }
+.rua-caminhante { position: absolute; left: 50%; bottom: 3%; height: 46%; width: auto; aspect-ratio: 40 / 70; translate: -50% 0; overflow: visible; }
+.demo-ilustrativo { position: absolute; top: 8px; right: var(--gutter); z-index: 2; }
 .demo-progresso {
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: var(--dourado); transform-origin: 0 50%;
@@ -17,8 +24,8 @@
   grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
   gap: clamp(24px, 4vw, 64px);
   align-items: center;
-  height: 100%;
-  padding-block: 24px;
+  flex: 1; min-height: 0;
+  padding-block: 12px;
 }
 .demo-lado { display: grid; gap: 40px; align-content: center; }
 .demo-texto-bloco { display: grid; gap: 16px; }
@@ -42,9 +49,7 @@
 
 .demo-cena-area { display: grid; gap: 16px; align-content: center; min-width: 0; }
 .demo-cena-topo { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.demo-ilustrativo { position: absolute; right: var(--gutter); bottom: 18px; z-index: 2; }
-.demo-grelha { position: relative; }
-.demo-cena { min-height: 460px; display: grid; align-items: center; }
+.demo-cena { display: grid; align-items: center; }
 
 /* ===== ficha ===== */
 .ficha {
@@ -86,12 +91,25 @@
 .a-escrever i:nth-child(3) { animation-delay: 0.3s; }
 @keyframes escrever { 50% { opacity: 1; transform: translateY(-3px); } }
 
+/* ===== personagens ===== */
+.pessoa-nome { display: block; text-align: center; font-size: 14px; color: var(--suave); }
+.pessoa-nome b { color: var(--tinta); }
+
 /* ===== cena 1: lead ===== */
-.cena-lead { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; align-items: start; }
-.conversa { padding: 18px; display: grid; gap: 16px; }
-.conversa-topo { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--linha); }
-.conversa-topo .etiqueta { margin-left: auto; }
-.conversa-corpo { display: grid; gap: 12px; }
+.cena-lead { display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px; align-items: center; }
+.lead-palco { display: flex; align-items: flex-end; gap: 0; }
+.lead-pessoa { flex: none; margin-right: -26px; position: relative; z-index: 1; display: grid; gap: 4px; }
+.lead-pessoa svg { width: clamp(96px, 10vw, 150px); height: auto; }
+.telefone {
+  flex: 1; max-width: 300px;
+  padding: 10px; border-radius: 36px; background: var(--tinta);
+  box-shadow: 0 30px 60px -30px rgba(21, 24, 29, 0.55);
+}
+.telefone-ecra { background: var(--cartao); border-radius: 28px; padding: 14px; display: grid; gap: 12px; min-height: 340px; align-content: start; }
+.conversa-topo { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--linha); }
+.conversa-topo .avatar { width: 34px; height: 34px; font-size: 12px; background: var(--tinta); color: var(--dourado); }
+.conversa-corpo { display: grid; gap: 10px; }
+.telefone .bolha { font-size: 14px; max-width: 92%; }
 .lead-lado { display: grid; gap: 18px; }
 .lead-metrica, .lead-qualificacao { padding: 20px; display: grid; gap: 10px; }
 .lead-numero { font-size: clamp(48px, 5vw, 72px); line-height: 1; }
@@ -101,7 +119,9 @@
 .cena-coach { display: grid; grid-template-columns: 1fr 1.15fr; gap: 18px; align-items: start; }
 .coach-esq, .coach-dir { display: grid; gap: 14px; }
 .chamada { padding: 18px; display: grid; gap: 16px; }
-.chamada-topo { display: flex; align-items: center; gap: 12px; }
+.chamada-topo { display: flex; align-items: center; gap: 14px; }
+.chamada-pessoa { flex: none; width: 78px; height: 74px; overflow: hidden; border-radius: 16px; background: var(--dourado-claro); display: grid; place-items: end center; }
+.chamada-pessoa svg { width: 70px; height: auto; margin-bottom: -18px; }
 .ponto-vivo { margin-left: auto; width: 10px; height: 10px; border-radius: 50%; background: var(--dourado); box-shadow: 0 0 0 0 rgba(232, 161, 60, 0.6); animation: vivo 1.4s infinite; }
 .ponto-vivo--off { animation: none; background: var(--linha-forte); }
 @keyframes vivo { 70% { box-shadow: 0 0 0 10px rgba(232, 161, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(232, 161, 60, 0); } }
@@ -131,25 +151,44 @@
 .resultado-icone { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--dourado); color: var(--tinta); font-size: 13px; }
 
 /* ===== cena 3: reunião ===== */
-.cena-reuniao { display: grid; gap: 22px; justify-items: center; }
-.briefing { padding: 18px 22px; width: min(460px, 100%); }
-.briefing ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+.cena-reuniao { display: grid; gap: 14px; justify-items: center; }
+.briefing { padding: 14px 20px; width: min(460px, 100%); }
+.briefing ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; font-size: 14px; }
+.mesa { width: min(560px, 100%); display: grid; }
+.mesa-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.mesa-baloes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-height: 76px; align-items: end; }
+.mesa-balao-lugar { display: grid; }
+.mesa-balao-lugar--dir { justify-items: end; }
+.mesa-balao { position: relative; max-width: 250px; padding: 10px 14px; border-radius: 16px; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.mesa-balao--esq { background: var(--tinta); color: var(--creme); border-bottom-left-radius: 4px; }
+.mesa-balao--dir { background: var(--dourado); color: var(--tinta); border-bottom-right-radius: 4px; }
+.mesa-nomes { display: flex; justify-content: space-between; padding-inline: 14%; font-size: 14px; color: var(--suave); }
+.mesa-nomes b { color: var(--tinta); }
 .aperto { width: min(560px, 100%); display: grid; gap: 4px; }
 .aperto-svg { width: 100%; height: auto; overflow: visible; }
 .aperto-nomes { display: flex; justify-content: space-between; font-size: 15px; color: var(--suave); padding-inline: 8%; }
 .aperto-nomes b { color: var(--tinta); }
 
 /* ===== cena 4: orquestrador ===== */
-.cena-orq { display: grid; gap: 18px; justify-items: center; }
-.orq-proposta { padding: 18px 28px; display: grid; justify-items: center; gap: 4px; text-align: center; }
-.orq-valor { font-size: clamp(40px, 4.6vw, 64px); line-height: 1; }
+.cena-orq { display: grid; gap: 12px; justify-items: center; }
+.orq-cima { display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; }
+.orq-agente { display: flex; align-items: center; gap: 4px; }
+.orq-agente svg { width: clamp(64px, 6vw, 92px); height: auto; }
+.orq-coluna { display: grid; gap: 8px; align-content: start; }
+.orq-fala {
+  position: relative; padding: 9px 12px; border-radius: 14px; border-top-left-radius: 4px;
+  background: var(--tinta); color: var(--creme); font-size: 13px; font-weight: 600; line-height: 1.35;
+}
+.orq-fala-autor { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado); margin-bottom: 2px; }
+.orq-proposta { padding: 14px 24px; display: grid; justify-items: center; gap: 4px; text-align: center; }
+.orq-valor { font-size: clamp(34px, 3.8vw, 54px); line-height: 1; }
 .orq-barra {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 10px 20px; border-radius: 999px;
   background: var(--tinta); color: var(--creme); font-weight: 600; font-size: 15px;
 }
 .orq-anel { width: 12px; height: 12px; border-radius: 50%; background: var(--dourado); }
-.orq-voo { position: relative; width: 100%; height: 48px; }
+.orq-voo { position: relative; width: 100%; height: 26px; }
 .orq-pacote { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 5px; background: var(--dourado); box-shadow: 0 0 0 6px rgba(232, 161, 60, 0.2); }
 .orq-departamentos { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .orq-dep { padding: 16px; display: grid; gap: 10px; align-content: start; font-size: 14px; }
@@ -200,7 +239,8 @@
 
 /* ===== telemóvel e ecrãs baixos ===== */
 @media (max-width: 900px) {
-  .demo-palco { align-items: flex-start; padding-top: 64px; }
+  .demo-palco { padding-top: 64px; }
+  .lead-pessoa { margin-right: -8px; }
   .demo-grelha { grid-template-columns: 1fr; gap: 12px; align-content: start; padding-block: 12px; }
   .demo-lado { gap: 10px; }
   .demo-texto-bloco { gap: 6px; }
@@ -210,7 +250,20 @@
   .demo-indice-nome { display: none; }
   .demo-indice button.ativo .demo-indice-nome { display: inline; }
   .demo-cena { min-height: 0; }
-  .demo-ilustrativo { right: 12px; bottom: 12px; font-size: 10px; padding: 4px 8px; }
+  .demo-ilustrativo { right: 12px; top: 6px; font-size: 9px; padding: 3px 7px; }
+  .demo-rua { height: 88px; }
+  .lead-pessoa svg { width: 92px; }
+  .lead-pessoa .pessoa-nome { font-size: 12px; }
+  .telefone { padding: 7px; border-radius: 28px; }
+  .telefone-ecra { min-height: 0; padding: 10px; border-radius: 22px; gap: 8px; }
+  .telefone .bolha { font-size: 12.5px; padding: 8px 11px; }
+  .mesa-balao { font-size: 12.5px; padding: 8px 11px; }
+  .mesa-baloes { gap: 10px; min-height: 64px; }
+  .orq-cima { gap: 8px; }
+  .orq-fala { font-size: 11px; padding: 7px 9px; }
+  .orq-fala-autor { display: none; }
+  .chamada-pessoa { width: 60px; height: 58px; }
+  .chamada-pessoa svg { width: 54px; margin-bottom: -14px; }
   .ficha { font-size: 12px; padding: 7px 12px; gap: 8px; }
   .ficha-rotulo { display: none; }
   .cena-lead, .cena-coach, .cena-doc { grid-template-columns: 1fr; gap: 10px; }
@@ -230,8 +283,8 @@
   .orq-dep h3 { font-size: 15px; }
   .orq-leva { font-size: 11px; line-height: 1.35; }
   .orq-leva .eyebrow { font-size: 10px; letter-spacing: 0.1em; }
-  .orq-proposta { padding: 12px 20px; }
-  .orq-voo { height: 30px; }
+  .orq-proposta { padding: 10px 16px; }
+  .orq-voo { height: 16px; }
   .broker-grelha { grid-template-columns: 1fr; }
   .check { font-size: 13px; padding: 5px 8px; }
   .notificacao, .whatsapp-corpo { font-size: 13px; }

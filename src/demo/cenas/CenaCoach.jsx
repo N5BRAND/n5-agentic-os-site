@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import Revela from '../Revela.jsx'
+import { Pessoa } from '../ilustracoes/Pessoas.jsx'
 
 const BARRAS = Array.from({ length: 22 }, (_, i) => i)
 
@@ -24,9 +25,11 @@ export default function CenaCoach({ cena, passo }) {
       <div className="coach-esq">
         <Revela ver={passo >= 1} className="cartao chamada">
           <div className="chamada-topo">
-            <span className="avatar avatar--escuro">RC</span>
+            <div className="chamada-pessoa">
+              <Pessoa largura={78} cor="#15181D" acessorio="auscultadores" fala={emChamada} />
+            </div>
             <div>
-              <b>{emChamada ? 'Em chamada' : 'Chamada terminada'}</b>
+              <b>Rui · {emChamada ? 'em chamada' : 'chamada terminada'}</b>
               <span className="suave">com {cena.chamada.com} · {cena.chamada.duracao}</span>
             </div>
             <span className={`ponto-vivo ${emChamada ? '' : 'ponto-vivo--off'}`} />

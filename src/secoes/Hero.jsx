@@ -11,12 +11,6 @@ const AVISOS = [
   { rotulo: 'Financeiro', texto: 'Comissão prevista registada', hora: '16:05' },
 ]
 
-const EIXOS = [
-  { n: '01', titulo: 'Controlar a operação', texto: 'Sabes o que cada consultor fez, sem perguntar.' },
-  { n: '02', titulo: 'Ligar os departamentos', texto: 'Comercial, crédito, jurídico e financeiro na mesma ficha.' },
-  { n: '03', titulo: 'Saber o dinheiro', texto: 'Que comissões vêm a caminho, de onde e quando.' },
-]
-
 const subir = (atraso = 0) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
@@ -86,16 +80,6 @@ export default function Hero() {
         <motion.div {...subir(0.7)}>
           <PainelVivo />
         </motion.div>
-      </div>
-
-      <div className="contentor hero-eixos">
-        {EIXOS.map((e, i) => (
-          <motion.div key={e.n} className="hero-eixo" {...subir(0.9 + i * 0.12)}>
-            <span className="eyebrow">{e.n}</span>
-            <h3>{e.titulo}</h3>
-            <p>{e.texto}</p>
-          </motion.div>
-        ))}
       </div>
     </section>
   )
