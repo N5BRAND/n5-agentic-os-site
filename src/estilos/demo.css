@@ -22,6 +22,7 @@
   display: grid;
   grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
   gap: clamp(24px, 4vw, 64px);
+  grid-template-rows: minmax(0, 1fr);
   align-items: center;
   flex: 1; min-height: 0;
   padding-block: 12px;
@@ -46,8 +47,8 @@
 .demo-indice-n { font-family: var(--mono); font-weight: 700; font-size: 11px; color: var(--dourado-escuro); }
 .demo-indice button.ativo .demo-indice-n { color: var(--dourado); }
 
-.demo-cena-area { display: grid; gap: 16px; align-content: center; min-width: 0; }
-.demo-cena-topo { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.demo-cena-area { display: flex; flex-direction: column; gap: 14px; min-width: 0; min-height: 0; align-self: stretch; padding-block: 8px; }
+.demo-cena-topo { flex: none; display: flex; align-items: center; gap: 12px; min-width: 0; }
 .demo-cena { display: grid; align-items: center; }
 
 /* ===== ficha ===== */
@@ -240,7 +241,9 @@
 @media (max-width: 900px) {
   .demo-palco { padding-top: 64px; }
   .lead-pessoa { margin-right: -8px; }
-  .demo-grelha { grid-template-columns: 1fr; gap: 12px; align-content: start; padding-block: 12px; }
+  .demo-grelha { display: flex; flex-direction: column; gap: 10px; padding-block: 10px; }
+  .demo-lado { flex: none; }
+  .demo-cena-area { flex: 1; padding-block: 0; gap: 10px; }
   .demo-lado { gap: 10px; }
   .demo-texto-bloco { gap: 6px; }
   .demo-texto-bloco h2 { font-size: clamp(22px, 6vw, 30px); }
@@ -267,7 +270,12 @@
   .cena-lead, .cena-coach, .cena-doc { grid-template-columns: 1fr; gap: 10px; }
   .lead-metrica, .transcricao, .briefing { display: none; }
   /* no coach, cada bloco dá lugar ao seguinte para caber tudo no ecrã */
+  .cena-coach[data-fase='chamada'] .coach-proximo,
+  .cena-coach[data-fase='chamada'] .coach-pipeline,
+  .cena-coach[data-fase='chamada'] .resultado,
   .cena-coach[data-fase='proximo'] .chamada,
+  .cena-coach[data-fase='proximo'] .coach-pipeline,
+  .cena-coach[data-fase='proximo'] .resultado,
   .cena-coach[data-fase='pipeline'] .chamada,
   .cena-coach[data-fase='pipeline'] .coach-bloco { display: none; }
   .coach-numeros .numero { font-size: 28px; }
@@ -295,4 +303,14 @@
   .demo-cena { min-height: 0; }
   .transcricao { display: none; }
   .demo-lado { gap: 24px; }
+}
+
+@media (max-width: 420px) {
+  .ficha-imovel { display: none; }
+  .orq-leva { display: none; }
+  .orq-agente svg { width: 54px; }
+  .orq-valor { font-size: 30px; }
+  .check:nth-child(-n+2) { display: none; }
+  .lead-passa { display: none; }
+  .chips .chip { font-size: 11.5px; padding: 4px 9px; }
 }

@@ -110,6 +110,9 @@ button { font: inherit; color: inherit; }
   box-shadow: var(--sombra);
 }
 
+.ajusta { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.ajusta-dentro { transform-origin: top center; transition: transform 0.25s ease; }
+
 .so-leitores {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;

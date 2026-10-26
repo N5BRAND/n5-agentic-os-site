@@ -125,7 +125,7 @@
 
 /* ===== perfis: três percursos animados ===== */
 .perfis { position: relative; background: var(--creme); }
-.perfis-palco { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; align-content: center; padding-top: 68px; overflow: hidden; }
+.perfis-palco { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; padding: 76px 0 12px; overflow: hidden; }
 .perfis-palco--estatico { position: static; height: auto; padding-block: 96px; }
 .perfis-grelha { display: grid; grid-template-columns: minmax(260px, 0.7fr) 1.6fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
 .perfis-texto { display: grid; gap: 16px; align-content: center; }
@@ -137,6 +137,7 @@
 .perfis-pontos span.cheio { background: var(--dourado); }
 .perfis-mapa { position: relative; width: 100%; aspect-ratio: 1200 / 560; }
 .perfis-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.perfis-svg--v { display: none; }
 .perfis-cartao {
   position: absolute; translate: -50% -50%; z-index: 2;
   display: grid; gap: 6px; width: clamp(190px, 20vw, 260px);
@@ -163,7 +164,7 @@
 .perfis-partilha i { font-style: normal; font-size: 11px; font-weight: 700; text-align: center; padding: 5px 0; border-radius: 6px; background: var(--dourado); color: var(--tinta); }
 .perfis-partilha i + i { background: var(--creme); }
 @media (max-width: 900px) {
-  .perfis-palco { padding-top: 64px; align-content: start; }
+  .perfis-palco { padding-top: 66px; }
   .perfis-grelha { grid-template-columns: 1fr; gap: 10px; padding-top: 16px; }
   .perfis-texto h2 { font-size: 26px; margin: 4px 0 6px; }
   .perfis-texto p:not(.eyebrow) { font-size: 15px; }
@@ -228,3 +229,9 @@
 .rodape { background: var(--creme); padding: 48px 0 32px; border-top: 1px solid var(--linha); }
 .rodape-linha { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .rodape-nota { color: var(--suave); font-size: 14px; }
+
+@media (max-width: 600px) {
+  .perfis-svg--h { display: none; }
+  .perfis-svg--v { display: block; width: 100%; max-width: 380px; height: auto; margin-inline: auto; }
+  .hero-simbolo { opacity: 0.05; }
+}

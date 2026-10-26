@@ -9,6 +9,7 @@ import CenaOrquestrador from './cenas/CenaOrquestrador.jsx'
 import CenaDocumento from './cenas/CenaDocumento.jsx'
 import CenaBroker from './cenas/CenaBroker.jsx'
 import Rua from './ilustracoes/Rua.jsx'
+import Ajusta from '../marca/Ajusta.jsx'
 
 const COMPONENTES = {
   lead: CenaLead,
@@ -156,20 +157,22 @@ export default function Demo() {
             <div className="demo-cena-topo">
               <Ficha indice={estado.indice} />
             </div>
-            <AnimatePresence mode="wait" custom={estado.dir} initial={false}>
-              <motion.div
-                key={cena.id}
-                custom={estado.dir}
-                variants={variantes}
-                initial="entra"
-                animate="centro"
-                exit="sai"
-                transition={{ type: 'spring', stiffness: 160, damping: 24 }}
-                className="demo-cena"
-              >
-                <Cena cena={cena} passo={estado.passo} />
-              </motion.div>
-            </AnimatePresence>
+            <Ajusta className="demo-cena-ajusta">
+              <AnimatePresence mode="wait" custom={estado.dir} initial={false}>
+                <motion.div
+                  key={cena.id}
+                  custom={estado.dir}
+                  variants={variantes}
+                  initial="entra"
+                  animate="centro"
+                  exit="sai"
+                  transition={{ type: 'spring', stiffness: 160, damping: 24 }}
+                  className="demo-cena"
+                >
+                  <Cena cena={cena} passo={estado.passo} />
+                </motion.div>
+              </AnimatePresence>
+            </Ajusta>
           </div>
         </div>
         <div className="demo-rua">

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { useRef, useState } from 'react'
 import { cenaDe } from '../logica/linha-tempo.js'
+import Ajusta from '../marca/Ajusta.jsx'
 
 /* três percursos que se juntam no jurídico, na escritura e na comissão (coordenadas num quadro de 1200 × 560) */
 const JUNCAO = { x: 800, y: 280 }
@@ -43,6 +44,56 @@ function Cartao({ ver, onde, tipo, rotulo, children, atraso = 0 }) {
   )
 }
 
+/* a mesma história em vertical, para o telemóvel: três faixas que descem e se juntam (quadro de 360 × 330) */
+const V_FAIXAS = [
+  { id: 'comprador', nome: 'Comprador', x: 60, d: 'M60 34 V150 C 60 195, 180 190, 180 230', passos: ['Lead', 'Visitas', 'Proposta'] },
+  { id: 'vendedor', nome: 'Vendedor', x: 180, d: 'M180 34 V230', passos: ['Lead', 'Avaliação', 'Angariação'] },
+  { id: 'investidor', nome: 'Investidor', x: 300, d: 'M300 34 V150 C 300 195, 180 190, 180 230', passos: ['Lead', 'SPVs', 'Subscrição'] },
+]
+const V_FINAL = 'M180 230 V320'
+
+function MapaVertical({ f, linha, linhaFim }) {
+  const arco = (d, cor, atraso) => (
+    <motion.path
+      d={d} fill="none" stroke={cor} strokeWidth="3" strokeDasharray="6 6"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={f >= 1 ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+      transition={{ duration: 0.8, delay: f >= 1 ? atraso : 0 }}
+    />
+  )
+  return (
+    <svg viewBox="0 0 360 330" className="perfis-svg perfis-svg--v" aria-hidden="true">
+      {V_FAIXAS.map(fx => (
+        <g key={fx.id}>
+          <path d={fx.d} fill="none" stroke="rgba(21,24,29,0.08)" strokeWidth="12" strokeLinecap="round" />
+          <motion.path d={fx.d} fill="none" stroke="#15181D" strokeWidth="4" strokeLinecap="round" style={{ pathLength: linha }} />
+          <text x={fx.x} y="18" textAnchor="middle" fontSize="13" fontWeight="800" fontFamily="Bricolage Grotesque, sans-serif" fill="#15181D">{fx.nome}</text>
+          {fx.passos.map((p, i) => (
+            <g key={p}>
+              <circle cx={fx.x} cy={56 + i * 38} r="7" fill="#F5F4F0" stroke="#15181D" strokeWidth="3" />
+              <text x={fx.x + 12} y={60 + i * 38} fontSize="11" fontFamily="Archivo, sans-serif" fill="#15181D">{p}</text>
+            </g>
+          ))}
+        </g>
+      ))}
+      {arco('M66 170 Q 122 146 178 172', '#2B44E7', 0)}
+      {arco('M182 172 Q 238 146 294 170', '#B4761A', 0.5)}
+      <path d={V_FINAL} fill="none" stroke="rgba(21,24,29,0.08)" strokeWidth="12" strokeLinecap="round" />
+      <motion.path d={V_FINAL} fill="none" stroke="#E8A13C" strokeWidth="7" strokeLinecap="round" style={{ pathLength: linhaFim }} />
+      <circle cx="180" cy="230" r="6" fill="#15181D" />
+      {MARCOS_FINAIS.map((m, i) => {
+        const aceso = f >= 3 + (i > 0 ? 1 : 0)
+        return (
+          <g key={m.nome}>
+            <circle cx="180" cy={256 + i * 30} r="10" fill={aceso ? '#E8A13C' : '#F5F4F0'} stroke="#15181D" strokeWidth="3" />
+            <text x="198" y={260 + i * 30} fontSize="12" fontWeight="700" fontFamily="Archivo, sans-serif" fill="#15181D">{m.nome}</text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
+
 export default function Perfis() {
   const reduzir = useReducedMotion()
   const ref = useRef(null)
@@ -58,6 +109,7 @@ export default function Perfis() {
   return (
     <section ref={ref} className="perfis" style={{ height: reduzir ? 'auto' : '420vh' }}>
       <div className={reduzir ? 'perfis-palco perfis-palco--estatico' : 'perfis-palco'}>
+        <Ajusta>
         <div className="contentor perfis-grelha">
           <div className="perfis-texto">
             <p className="eyebrow">Três perfis, um destino</p>
@@ -74,7 +126,8 @@ export default function Perfis() {
           </div>
 
           <div className="perfis-mapa">
-            <svg viewBox="0 0 1200 560" className="perfis-svg" aria-hidden="true">
+            <MapaVertical f={f} linha={linha} linhaFim={linhaFim} />
+            <svg viewBox="0 0 1200 560" className="perfis-svg perfis-svg--h" aria-hidden="true">
               {FAIXAS.map(fx => (
                 <g key={fx.id}>
                   <path d={fx.d} fill="none" stroke="rgba(21,24,29,0.08)" strokeWidth="18" strokeLinecap="round" />
@@ -152,6 +205,7 @@ export default function Perfis() {
             </Cartao>
           </div>
         </div>
+        </Ajusta>
       </div>
     </section>
   )
