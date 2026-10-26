@@ -14,9 +14,8 @@ Fora de âmbito: a Terrae (não aparece no site), subdomínio próprio (fica o e
 
 - Promessa: um só sítio onde o broker controla toda a operação, do primeiro contacto à comissão paga.
 - Três eixos: controlar a operação, ligar os departamentos, saber o dinheiro.
-- Princípio: a IA trata do trabalho repetitivo sozinha; as decisões com peso jurídico ou financeiro pedem aprovação.
-  - Automático: respostas a leads, qualificação, marcação de reuniões, avisos de documentos em falta (ao consultor e à lead por WhatsApp), coaching de chamadas, passagens entre departamentos.
-  - Com aprovação: minutas, comissões e faturas, relatórios ao proprietário.
+- Princípio: a IA trata do trabalho repetitivo sozinha (respostas a leads, qualificação, marcação de reuniões, avisos de documentos em falta ao consultor e à lead por WhatsApp, coaching de chamadas, passagens entre departamentos) e o consultor fica livre para fechar negócios.
+- O site não fala em aprovação de mensagens a clientes.
 
 ## Estrutura da página
 
@@ -36,7 +35,7 @@ Um palco fixo no ecrã (`position: sticky`) durante cerca de 700vh de scroll. O 
 Cenas, por ordem:
 
 1. **A lead entra e o agente responde sozinho.** A lead chega de um portal; em segundos o agente de leads responde, qualifica-a e propõe falar com o consultor. Sem intervenção do consultor.
-2. **O consultor liga, a IA faz de coach.** O consultor liga à lead (aviso de consentimento de gravação no início, RGPD). A chamada é transcrita e no fim aparece o feedback: o que correu bem, o que correu mal, o que fazer no próximo follow-up para fechar a reunião. Ao lado, a leitura do pipeline do consultor e sugestões para aumentar a faturação. O follow-up recomendado acontece e a reunião fica marcada.
+2. **O consultor liga, a IA faz de coach.** O consultor liga à lead. A chamada é transcrita e no fim aparece o feedback: o que correu bem, o que correu mal, o que fazer no próximo follow-up para fechar a reunião. Ao lado, a leitura do pipeline do consultor e sugestões para aumentar a faturação. O follow-up recomendado acontece e a reunião fica marcada.
 3. **Consultor e lead encontram-se.** Na reunião que ficou marcada, aperto de mão animado.
 4. **Proposta aceite, entra o orquestrador.** A ficha divide-se em passagens que voam para o crédito, o jurídico e o financeiro, cada uma com o seu pacote de informação (tabela de passagens do PDF).
 5. **Documento em falta.** O jurídico deteta-o; o consultor recebe o alerta e a lead recebe a mensagem no WhatsApp, ao mesmo tempo.
