@@ -14,7 +14,7 @@ const MARCOS_FINAIS = [{ x: 890, nome: 'CPCV · AML' }, { x: 1010, nome: 'Escrit
 
 const FASES = [
   { eyebrow: '01 · Três percursos', titulo: 'Cada cliente segue o seu caminho.', texto: 'Comprador, vendedor e investidor: o sistema acompanha os três ao mesmo tempo, passo a passo.' },
-  { eyebrow: '02 · Matching automático', titulo: 'Quem compra encontra quem vende.', texto: 'Entrou um imóvel? O sistema encontra os compradores certos na tua carteira, e o contrário. Hoje isto faz-se de cabeça.' },
+  { eyebrow: '02 · Matching automático', titulo: 'Quem compra encontra quem vende. Quem investe encontra a oportunidade.', texto: 'Entrou um imóvel? O sistema encontra os compradores certos na tua carteira, e o contrário. E mostra as oportunidades de investimento aos investidores que já são teus contactos.' },
   { eyebrow: '03 · Entraves detetados', titulo: 'Avisa antes de o negócio cair.', texto: 'O sistema deteta o que está a travar cada processo e diz-te logo o passo seguinte.' },
   { eyebrow: '04 · CPCV, documentos e AML', titulo: 'Os três juntam-se no jurídico.', texto: 'Documentos, CPCV e verificação AML tratados antes da escritura, sem correrias.' },
   { eyebrow: '05 · Escritura e comissão', titulo: 'Escritura feita. Comissão recebida.', texto: 'E paga a quem é devida, com as partilhas certas entre agência e consultores.' },
@@ -92,6 +92,14 @@ export default function Perfis() {
                 animate={f >= 1 ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
                 transition={{ duration: 0.8 }}
               />
+              {/* oportunidade de investimento: um arco entre o imóvel angariado e os investidores da carteira */}
+              <motion.path
+                d="M470 290 C 540 330, 540 390, 470 430"
+                fill="none" stroke="#B4761A" strokeWidth="4" strokeDasharray="8 8"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={f >= 1 ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                transition={{ duration: 0.8, delay: f >= 1 ? 0.5 : 0 }}
+              />
 
               {FAIXAS.map(fx => fx.passos.map((p, i) => (
                 <g key={fx.id + p}>
@@ -120,6 +128,10 @@ export default function Perfis() {
             <Cartao ver={f === 1} onde={pct(1010, 130)} tipo="match" rotulo="Match encontrado">
               <b>T3 em Benfica encaixa em 3 compradores</b>
               <span className="perfis-chips"><i>Zona</i><i>Tipologia</i><i>Preço</i><i>Crédito</i></span>
+            </Cartao>
+            <Cartao ver={f === 1} onde={pct(1010, 490)} tipo="investe" rotulo="Oportunidade de investimento" atraso={0.5}>
+              <b>Moradia para reabilitar em Almada: 2 investidores da tua carteira encaixam</b>
+              <span className="perfis-chips"><i>Rentabilidade</i><i>Capital disponível</i><i>Zona</i></span>
             </Cartao>
             <Cartao ver={f === 2} onde={pct(1010, 110)} tipo="alerta" rotulo="Entrave no comprador">
               <b>Avaliação do banco 8 000 € abaixo do preço</b>

@@ -147,6 +147,9 @@
 .perfis-cartao-rotulo { font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .perfis-cartao--match { border-color: rgba(43, 68, 231, 0.35); }
 .perfis-cartao--match .perfis-cartao-rotulo { color: var(--cobalto); }
+.perfis-cartao--investe { border-color: rgba(180, 118, 26, 0.45); }
+.perfis-cartao--investe .perfis-cartao-rotulo { color: var(--dourado-escuro); }
+.perfis-cartao--investe .perfis-chips i { background: var(--dourado-claro); color: var(--dourado-escuro); }
 .perfis-cartao--alerta { background: #FBF1E2; border-color: rgba(232, 161, 60, 0.55); }
 .perfis-cartao--alerta .perfis-cartao-rotulo { color: var(--dourado-escuro); }
 .perfis-cartao--doc .perfis-cartao-rotulo, .perfis-cartao--dinheiro .perfis-cartao-rotulo { color: var(--dourado-escuro); }
