@@ -3,27 +3,27 @@ import { useEffect, useRef, useState } from 'react'
 
 const PAPEIS = [
   {
-    id: 'broker', nome: 'Broker', quando: '1 de dezembro',
+    id: 'broker', nome: 'Broker',
     recebe: ['Resumo semanal por consultor e por equipa', 'Funil e previsão de faturação', 'Comissões a caminho'],
     alerta: 'Três escrituras deste mês dependem de crédito ainda não aprovado.',
   },
   {
-    id: 'consultor', nome: 'Consultor', quando: '1 de dezembro',
+    id: 'consultor', nome: 'Consultor',
     recebe: ['Leads já respondidas e qualificadas', 'Coaching depois de cada chamada', 'O próximo passo de cada negócio'],
     alerta: 'Visita de ontem sem feedback do comprador.',
   },
   {
-    id: 'credito', nome: 'Crédito', quando: 'A seguir',
+    id: 'credito', nome: 'Crédito',
     recebe: ['Compradores novos com contexto', 'Documentos recebidos', 'Prazos do banco'],
     alerta: 'Falta o IRS do comprador para submeter ao banco.',
   },
   {
-    id: 'juridico', nome: 'Jurídico', quando: 'A seguir',
+    id: 'juridico', nome: 'Jurídico',
     recebe: ['Dossiers abertos e documentos em falta', 'Prazos de CPCV e escritura', 'Estado AML de cada processo'],
     alerta: 'Escritura marcada sem certidão atualizada.',
   },
   {
-    id: 'financeiro', nome: 'Financeiro', quando: 'A seguir',
+    id: 'financeiro', nome: 'Financeiro',
     recebe: ['Comissões previstas e devidas', 'Partilhas e recebimentos em atraso', 'Pagamentos a consultores'],
     alerta: 'Comissão da escritura de sexta por faturar.',
   },
@@ -78,7 +78,6 @@ export default function Ecras() {
             >
               <div className="ecras-topo">
                 <h3>Ecrã do {p.nome.toLowerCase()}</h3>
-                <span className={`etiqueta ${p.quando === 'A seguir' ? 'etiqueta--seguir' : ''}`}>{p.quando}</span>
               </div>
               <div className="ecras-colunas">
                 <div>

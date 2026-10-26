@@ -1,13 +1,10 @@
 import { motion, AnimatePresence } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { LANCAMENTO, tempoAte } from '../logica/contagem.js'
-import { validarInscricao } from '../logica/validar.js'
+import { validarInscricao, normalizarAmi } from '../logica/validar.js'
 import { codificar } from '../logica/netlify.js'
 
-const NO_LANCAMENTO = ['Resposta automática a leads', 'Coach de chamadas', 'Resumo semanal ao broker']
-const A_SEGUIR = ['Crédito', 'Jurídico', 'Financeiro', 'Comunicação entre departamentos', 'Relatório ao proprietário', 'Cruzamento de compradores e imóveis', 'Ecrã do investidor']
-
-const VAZIO = { nome: '', email: '', telefone: '', agencia: '', consultores: '', consentimento: false }
+const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
 function Contagem() {
   const [t, setT] = useState(() => tempoAte(LANCAMENTO))
@@ -65,7 +62,7 @@ function Formulario() {
       const r = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: codificar({ 'form-name': 'pre-venda', ...d, 'empresa-site': e.target.elements['empresa-site'].value }),
+        body: codificar({ 'form-name': 'pre-venda', ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
       setEstado('enviado')
@@ -86,13 +83,14 @@ function Formulario() {
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
-            <p className="prevenda-form-sub">Sem compromisso. Avisamos-te quando a pré-venda abrir.</p>
+            <p className="prevenda-form-sub">Sem compromisso. A licença AMI garante que a tua agência fica registada na lista.</p>
             <p className="so-leitores"><label>Não preenchas: <input name="empresa-site" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
               <Campo nome="email" rotulo="Email" type="email" value={d.email} onChange={muda} erro={erros.email} autoComplete="email" />
               <Campo nome="telefone" rotulo="Telefone (opcional)" type="tel" value={d.telefone} onChange={muda} erro={erros.telefone} autoComplete="tel" />
               <Campo nome="agencia" rotulo="Agência" value={d.agencia} onChange={muda} erro={erros.agencia} autoComplete="organization" />
+              <Campo nome="ami" rotulo="Licença AMI" placeholder="Ex.: 12345" inputMode="numeric" value={d.ami} onChange={muda} erro={erros.ami} />
               <Campo nome="consultores" rotulo="Nº de consultores (opcional)" inputMode="numeric" value={d.consultores} onChange={muda} erro={erros.consultores} />
             </div>
             <label className={`consentimento ${erros.consentimento ? 'campo--erro' : ''}`}>
@@ -117,22 +115,33 @@ export default function PreVenda() {
       <div className="contentor prevenda-grelha">
         <div className="prevenda-texto">
           <p className="eyebrow">Pré-venda</p>
-          <h2>Lançamento a 1 de dezembro. Entra antes.</h2>
+          <h2>1 de dezembro. O sistema completo, de uma vez.</h2>
           <p className="prevenda-lead">
-            Antes do lançamento abrimos uma pré-venda só para quem está na lista de espera.
-            Os primeiros pacotes têm <b className="prevenda-desconto">até 50% de desconto</b>.
+            Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
+            Antes disso, abrimos a pré-venda a quem está na lista de espera.
           </p>
-          <Contagem />
-          <div className="prevenda-modulos">
-            <div>
-              <span className="etiqueta">1 de dezembro</span>
-              <ul>{NO_LANCAMENTO.map(m => <li key={m}>{m}</li>)}</ul>
-            </div>
-            <div>
-              <span className="etiqueta etiqueta--seguir">A seguir</span>
-              <ul>{A_SEGUIR.map(m => <li key={m}>{m}</li>)}</ul>
-            </div>
+          <div className="prevenda-oferta">
+            <motion.div
+              className="prevenda-oferta-num"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span>200</span>
+              <small>licenças reservadas</small>
+            </motion.div>
+            <motion.div
+              className="prevenda-oferta-num prevenda-oferta-num--destaque"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+            >
+              <span>50%</span>
+              <small>de desconto nessas licenças</small>
+            </motion.div>
           </div>
+          <Contagem />
         </div>
         <Formulario />
       </div>

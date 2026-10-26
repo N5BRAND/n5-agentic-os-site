@@ -118,14 +118,18 @@
 .contagem-num { position: relative; overflow: hidden; height: 1.1em; font-family: var(--titulo); font-weight: 800; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .contagem-num span { display: block; }
 .contagem-rotulo { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245, 244, 240, 0.6); }
-.prevenda-modulos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.prevenda-modulos ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; color: rgba(245, 244, 240, 0.82); }
+.prevenda-oferta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prevenda-oferta-num { display: grid; gap: 2px; padding: 18px 20px; border-radius: 18px; border: 1px solid rgba(245, 244, 240, 0.14); }
+.prevenda-oferta-num span { font-family: var(--titulo); font-weight: 800; font-size: clamp(48px, 6vw, 76px); line-height: 1; letter-spacing: -0.04em; }
+.prevenda-oferta-num small { font-size: 15px; color: rgba(245, 244, 240, 0.72); }
+.prevenda-oferta-num--destaque { background: var(--dourado); border-color: var(--dourado); color: var(--tinta); }
+.prevenda-oferta-num--destaque small { color: rgba(21, 24, 29, 0.75); }
 
 .prevenda-form { color: var(--tinta); padding: clamp(22px, 3vw, 36px); min-height: 560px; display: grid; align-content: center; }
 .prevenda-form form { display: grid; gap: 16px; }
 .prevenda-form-sub { color: var(--suave); margin-top: -8px; }
 .prevenda-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.prevenda-campos .campo:first-child, .prevenda-campos .campo:nth-child(4) { grid-column: 1 / -1; }
+.prevenda-campos .campo:first-child { grid-column: 1 / -1; }
 .campo { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
 .campo input {
   font: inherit; font-weight: 400; font-size: 16px;
@@ -143,7 +147,7 @@
 .prevenda-ok { display: grid; justify-items: center; text-align: center; gap: 14px; padding: 40px 0; }
 .prevenda-ok-icone { display: inline-grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--dourado); font-size: 32px; font-weight: 700; }
 @media (max-width: 900px) {
-  .prevenda-grelha, .prevenda-modulos { grid-template-columns: 1fr; }
+  .prevenda-grelha { grid-template-columns: 1fr; }
   .prevenda-campos { grid-template-columns: 1fr; }
   .contagem-parte { min-width: 0; flex: 1; }
 }

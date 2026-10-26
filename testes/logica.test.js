@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { cenaDe, passoDe } from '../src/logica/linha-tempo.js'
-import { validarInscricao } from '../src/logica/validar.js'
+import { validarInscricao, normalizarAmi } from '../src/logica/validar.js'
 import { LANCAMENTO, tempoAte } from '../src/logica/contagem.js'
 import { codificar } from '../src/logica/netlify.js'
 
@@ -42,7 +42,18 @@ describe('passoDe', () => {
 })
 
 describe('validarInscricao', () => {
-  const base = { nome: 'Ana', email: 'ana@agencia.pt', agencia: 'Casa Azul', telefone: '', consultores: '', consentimento: true }
+  const base = { nome: 'Ana', email: 'ana@agencia.pt', agencia: 'Casa Azul', ami: '12345', telefone: '', consultores: '', consentimento: true }
+
+  it('exige a licença AMI da agência', () => {
+    expect(validarInscricao({ ...base, ami: '' }).erros.ami).toBeTruthy()
+  })
+  it('aceita a AMI com ou sem o prefixo, e só com 3 a 6 dígitos', () => {
+    expect(validarInscricao({ ...base, ami: 'AMI 4719' }).ok).toBe(true)
+    expect(validarInscricao({ ...base, ami: 'ami-12345' }).ok).toBe(true)
+    expect(validarInscricao({ ...base, ami: '12' }).erros.ami).toBeTruthy()
+    expect(validarInscricao({ ...base, ami: '1234567' }).erros.ami).toBeTruthy()
+    expect(validarInscricao({ ...base, ami: '12a45' }).erros.ami).toBeTruthy()
+  })
 
   it('aceita uma inscrição completa', () => {
     expect(validarInscricao(base)).toEqual({ ok: true, erros: {} })
@@ -51,6 +62,9 @@ describe('validarInscricao', () => {
     const r = validarInscricao({ ...base, nome: ' ', agencia: '', consentimento: false })
     expect(r.ok).toBe(false)
     expect(Object.keys(r.erros).sort()).toEqual(['agencia', 'consentimento', 'nome'])
+  })
+  it('normaliza a AMI para só os dígitos', () => {
+    expect(normalizarAmi(' AMI 04719 ')).toBe('04719')
   })
   it('rejeita email inválido', () => {
     expect(validarInscricao({ ...base, email: 'ana@' }).erros.email).toBeTruthy()
