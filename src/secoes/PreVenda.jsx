@@ -83,7 +83,7 @@ function Formulario() {
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
-            <p className="prevenda-form-sub">Sem compromisso. A licença AMI garante que a tua agência fica registada na lista.</p>
+            <p className="prevenda-form-sub">Sem compromisso. Depois de entrares na lista, enviamos-te o link da pré-reserva. A licença AMI garante que a tua agência fica registada.</p>
             <p className="so-leitores"><label>Não preenchas: <input name="empresa-site" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
@@ -120,6 +120,7 @@ export default function PreVenda() {
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
             Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto numa das 200 licenças
             reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
+            Garantes a tua licença com uma pré-reserva de 100 €.
           </p>
           <div className="prevenda-oferta">
             <motion.div
@@ -152,6 +153,23 @@ export default function PreVenda() {
               <small>formações por ano sobre o sistema, incluídas</small>
             </motion.div>
           </div>
+          <motion.div
+            className="prevenda-reserva"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.45 }}
+          >
+            <div className="prevenda-reserva-valor">
+              <small>Pré-reserva</small>
+              <span>100 €</span>
+            </div>
+            <ul className="prevenda-reserva-condicoes">
+              <li>Garante uma das 200 licenças a 50%</li>
+              <li>Descontada na primeira mensalidade</li>
+              <li>Reembolsável após o dia do lançamento</li>
+            </ul>
+          </motion.div>
           <Contagem />
         </div>
         <Formulario />

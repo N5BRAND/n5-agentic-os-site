@@ -9,5 +9,5 @@ export const PRODUTO = {
     'identificar a agência que se inscreveu, através da licença AMI;',
     'contactar-te sobre a abertura da pré-venda, as suas condições e o lançamento previsto para 1 de dezembro de 2026.',
   ],
-  oferta: 'Para a pré-venda anunciámos 200 licenças com 50% de desconto e um pacote de 12 formações anuais sobre o sistema.',
+  oferta: 'Para a pré-venda anunciámos 200 licenças com 50% de desconto e um pacote de 12 formações anuais sobre o sistema. Cada licença garante-se com uma pré-reserva de 100 €, descontada na primeira mensalidade e reembolsável após o dia do lançamento.',
 }

@@ -5,7 +5,7 @@ import { cenaDe } from '../logica/linha-tempo.js'
 const EIXOS = [
   { n: '01', titulo: 'Controlar a operação', texto: 'Sabes o que cada consultor fez, quantas leads e visitas há e que negócios estão parados. Sem perguntar.' },
   { n: '02', titulo: 'Ligar os departamentos', texto: 'Comercial, crédito, jurídico e financeiro trabalham na mesma ficha. Ninguém depende do WhatsApp nem da memória.' },
-  { n: '03', titulo: 'Saber o dinheiro', texto: 'Que comissões vêm a caminho, de que negócios, quando entram e a quem se pagam.' },
+  { n: '03', titulo: 'Monitorizar o dinheiro', texto: 'Que comissões vêm a caminho, de que negócios, quando entram e a quem se pagam.' },
 ]
 
 /* os três eixos do sistema, um de cada vez: o scroll vai envolvendo cada um em dourado */
