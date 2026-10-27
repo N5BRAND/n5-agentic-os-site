@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { LANCAMENTO, tempoAte } from '../logica/contagem.js'
 import { validarInscricao, normalizarAmi } from '../logica/validar.js'
 import { codificar } from '../logica/netlify.js'
+import Prioridades from './Prioridades.jsx'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -46,7 +47,7 @@ function Campo({ nome, rotulo, erro, ...resto }) {
 function Formulario() {
   const [d, setD] = useState(VAZIO)
   const [erros, setErros] = useState({})
-  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | enviado | falhou
+  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | prioridades | enviado | falhou
   const muda = e => {
     const { name, value, type, checked } = e.target
     setD(x => ({ ...x, [name]: type === 'checkbox' ? checked : value }))
@@ -65,7 +66,7 @@ function Formulario() {
         body: codificar({ 'form-name': 'pre-venda', ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
-      setEstado('enviado')
+      setEstado('prioridades')
     } catch {
       setEstado('falhou')
     }
@@ -80,6 +81,8 @@ function Formulario() {
             <h3>Estás na lista.</h3>
             <p>Quando a pré-venda abrir, és dos primeiros a saber. Dá cá cinco 🖐️</p>
           </motion.div>
+        ) : estado === 'prioridades' ? (
+          <Prioridades key="prioridades" email={d.email.trim()} titulo="O que é mais importante para a tua agência?" aoAcabar={() => setEstado('enviado')} />
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
