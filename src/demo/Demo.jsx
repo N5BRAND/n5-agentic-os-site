@@ -113,6 +113,10 @@ export default function Demo() {
     <section id="demo" ref={ref} className="demo" style={{ height: `${CENAS.length * VH_POR_CENA}vh` }}>
       <div className="demo-palco">
         <motion.div className="demo-progresso" style={{ scaleX: barra }} />
+        {/* a ficha do negócio ocupa a largura toda da página */}
+        <div className="ficha-faixa">
+          <Ficha indice={estado.indice} />
+        </div>
         <div className="contentor demo-grelha">
           <div className="demo-lado">
             {/* só a etapa atual, uma de cada vez */}
@@ -149,9 +153,6 @@ export default function Demo() {
           </div>
 
           <div className="demo-cena-area">
-            <div className="demo-cena-topo">
-              <Ficha indice={estado.indice} />
-            </div>
             <Ajusta className="demo-cena-ajusta">
               <AnimatePresence mode="wait" custom={estado.dir} initial={false}>
                 <motion.div
