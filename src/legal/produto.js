@@ -10,5 +10,5 @@ export const PRODUTO = {
     'perceber o que é mais importante para a tua agência, para te mostrarmos isso primeiro e decidirmos o que desenvolver primeiro;',
     'contactar-te sobre a abertura da pré-venda, as suas condições e o lançamento previsto para 1 de dezembro de 2026.',
   ],
-  oferta: 'Para a pré-venda anunciámos 200 licenças com 50% de desconto e um pacote de 12 formações anuais sobre o sistema. Cada licença garante-se com uma pré-reserva de 100 €, descontada na primeira mensalidade e reembolsável após o dia do lançamento. O pagamento é feito na Stripe e recebido pela 4IMPROVEMENTS, LDA, que aparece no extrato.',
+  oferta: 'Para a pré-venda anunciámos 200 licenças com 50% de desconto e um pacote de 12 formações anuais sobre o sistema. Cada licença garante-se com uma pré-reserva de 100 €, descontada na primeira mensalidade e reembolsável após o dia do lançamento. O valor anunciado para o lançamento é de 299 € por mês. O pagamento é feito na Stripe e recebido pela 4IMPROVEMENTS, LDA, que aparece no extrato.',
 }

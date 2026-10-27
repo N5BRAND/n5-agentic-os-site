@@ -23,9 +23,14 @@ describe('prioridades', () => {
   })
 })
 
-import { linkValido, LINK_PRE_RESERVA } from '../src/logica/pagamento.js'
+import { linkValido, LINK_PRE_RESERVA, VALOR_PRE_RESERVA, VALOR_LANCAMENTO } from '../src/logica/pagamento.js'
 
 describe('link da pré-reserva', () => {
+  it('mostra a pré-reserva e o valor no lançamento', () => {
+    expect(VALOR_PRE_RESERVA).toBe('100 €')
+    expect(VALOR_LANCAMENTO).toBe('299 €/mês')
+  })
+
   it('só aceita links de pagamento da Stripe', () => {
     expect(linkValido(LINK_PRE_RESERVA)).toBe(true)
     expect(linkValido('https://buy.stripe.com/abc123XYZ')).toBe(true)

@@ -89,7 +89,7 @@ function Formulario() {
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
-            <p className="prevenda-form-sub">Sem compromisso. Depois de entrares na lista, enviamos-te o link da pré-reserva. A licença AMI garante que a tua agência fica registada.</p>
+            <p className="prevenda-form-sub">Garantes a tua licença com uma pré-reserva de 100 €: primeiro os teus dados, depois o pagamento. Pedimos a licença AMI para registar a agência.</p>
             <p className="so-leitores"><label>Não preenchas: <input name="empresa-site" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
@@ -169,6 +169,7 @@ export default function PreVenda() {
             <div className="prevenda-reserva-valor">
               <small>Pré-reserva</small>
               <span>100 €</span>
+              <em>No lançamento: 299 €/mês</em>
             </div>
             <ul className="prevenda-reserva-condicoes">
               <li>Garante uma das 200 licenças a 50%</li>
