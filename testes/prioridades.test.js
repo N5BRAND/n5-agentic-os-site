@@ -23,12 +23,13 @@ describe('prioridades', () => {
   })
 })
 
-import { linkValido, LINK_PRE_RESERVA, VALOR_PRE_RESERVA, VALOR_LANCAMENTO } from '../src/logica/pagamento.js'
+import { linkValido, LINK_PRE_RESERVA, VALOR_PRE_RESERVA, MENSALIDADE } from '../src/logica/pagamento.js'
 
 describe('link da pré-reserva', () => {
   it('mostra a pré-reserva e o valor no lançamento', () => {
     expect(VALOR_PRE_RESERVA).toBe('100 €')
-    expect(VALOR_LANCAMENTO).toBe('299 €/mês')
+    expect(MENSALIDADE).toEqual({ normal: '299 €', desconto: 50, comDesconto: '149,50 €' })
+    expect(299 * (1 - MENSALIDADE.desconto / 100)).toBe(149.5)
   })
 
   it('só aceita links de pagamento da Stripe', () => {

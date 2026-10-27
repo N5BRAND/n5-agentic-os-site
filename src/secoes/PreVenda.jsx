@@ -5,6 +5,7 @@ import { validarInscricao, normalizarAmi } from '../logica/validar.js'
 import { codificar } from '../logica/netlify.js'
 import Prioridades from './Prioridades.jsx'
 import PreReserva from './PreReserva.jsx'
+import Mensalidade from './Mensalidade.jsx'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -89,7 +90,7 @@ function Formulario() {
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
-            <p className="prevenda-form-sub">Garantes a tua licença com uma pré-reserva de 100 €: primeiro os teus dados, depois o pagamento. Pedimos a licença AMI para registar a agência.</p>
+            <p className="prevenda-form-sub">A licença AMI garante que a tua agência fica registada.</p>
             <p className="so-leitores"><label>Não preenchas: <input name="empresa-site" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
@@ -159,6 +160,7 @@ export default function PreVenda() {
               <small>formações por ano sobre o sistema, incluídas</small>
             </motion.div>
           </div>
+          <p className="prevenda-porque"><b>Porquê só 200 licenças?</b> Nas primeiras 200 agências, a configuração é feita diretamente pela nossa equipa, com acompanhamento e formação. Para garantir essa qualidade, a pré-venda fica limitada a 200 licenças. Depois do lançamento, abrimos novas licenças a cada trimestre, conforme a equipa consegue acompanhar mais agências.</p>
           <motion.div
             className="prevenda-reserva"
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +171,7 @@ export default function PreVenda() {
             <div className="prevenda-reserva-valor">
               <small>Pré-reserva</small>
               <span>100 €</span>
-              <em>No lançamento: 299 €/mês</em>
+              <Mensalidade />
             </div>
             <ul className="prevenda-reserva-condicoes">
               <li>Garante uma das 200 licenças a 50%</li>
