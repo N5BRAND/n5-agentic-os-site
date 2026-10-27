@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import Simbolo from '../marca/Simbolo.jsx'
+import { ESGOTADO } from '../logica/pagamento.js'
 
 const AVISOS = [
   { rotulo: 'Agente de leads', texto: 'Lead respondida em 41 s', hora: '23:14' },
@@ -73,7 +74,7 @@ export default function Hero() {
             Do primeiro contacto à comissão paga, num só sítio. Os agentes de IA tratam do trabalho repetitivo. A tua equipa fecha negócios.
           </motion.p>
           <motion.div className="hero-botoes" {...subir(0.5)}>
-            <a href="#pre-venda" className="botao">Entrar na lista da pré-venda</a>
+            <a href="#pre-venda" className="botao">{ESGOTADO ? 'Entrar na lista das próximas licenças' : 'Entrar na lista da pré-venda'}</a>
             <a href="#demo" className="botao botao--linha">Ver como funciona</a>
           </motion.div>
         </div>

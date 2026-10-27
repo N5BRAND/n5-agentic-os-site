@@ -1,6 +1,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'motion/react'
 import { useState } from 'react'
 import Simbolo from '../marca/Simbolo.jsx'
+import { ESGOTADO } from '../logica/pagamento.js'
 
 export default function Topo() {
   const { scrollY } = useScroll()
@@ -22,7 +23,7 @@ export default function Topo() {
         <nav className="topo-nav" aria-label="Secções">
           <a href="#demo">Como funciona</a>
           <a href="#sistema">O sistema</a>
-          <a href="#pre-venda">Pré-venda</a>
+          <a href="#pre-venda">{ESGOTADO ? 'Próximas licenças' : 'Pré-venda'}</a>
         </nav>
         <a href="#pre-venda" className="botao topo-cta">Lista de espera</a>
       </div>

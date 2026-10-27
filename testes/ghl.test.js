@@ -18,6 +18,13 @@ describe('GHL', () => {
     expect(r.nota).toContain('Licença AMI: 4719')
   })
 
+  it('guarda para o trimestre seguinte quem chega depois de esgotarem as 25', () => {
+    const r = paraGhl('proximo-trimestre', { nome: 'Rui', email: 'rui@agencia.pt', telefone: '', agencia: 'A', ami: '4719', consultores: '' })
+    expect(r.etiquetas).toEqual(['n5-imobiliario', 'lista-proximo-trimestre'])
+    expect(r.nota).toContain('próximo trimestre')
+    expect(r.nota).toContain('Licença AMI: 4719')
+  })
+
   it('passa as prioridades numa nota', () => {
     const r = paraGhl('prioridades', { email: 'a@b.pt', prioridades: 'Responder às leads; Organizar o dia' })
     expect(r.contacto).toEqual({ email: 'a@b.pt' })
