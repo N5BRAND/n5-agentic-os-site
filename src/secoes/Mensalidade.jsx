@@ -2,7 +2,7 @@ import { MENSALIDADE } from '../logica/pagamento.js'
 
 /* mensalidade no lançamento; quando há desconto, o valor normal aparece riscado a laranja, como a diagonal do símbolo */
 export default function Mensalidade() {
-  const { normal, desconto, comDesconto } = MENSALIDADE
+  const { normal, desconto, comDesconto, meses } = MENSALIDADE
   return (
     <div className="mensalidade">
       <span className="mensalidade-rotulo">No lançamento</span>
@@ -17,6 +17,7 @@ export default function Mensalidade() {
           <b>{normal}/mês</b>
         )}
       </span>
+      {meses && <span className="mensalidade-nota">nas primeiras {meses} mensalidades</span>}
     </div>
   )
 }

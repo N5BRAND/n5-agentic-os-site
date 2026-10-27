@@ -121,13 +121,14 @@ function Formulario() {
 export default function PreVenda() {
   return (
     <section id="pre-venda" className="seccao escuro prevenda">
-      <div className="contentor prevenda-grelha">
+      <div className="contentor prevenda-grelha prevenda-grelha--coluna">
         <div className="prevenda-texto">
           <p className="eyebrow">Pré-venda</p>
           <h2>1 de dezembro. O sistema completo, de uma vez.</h2>
+          <Contagem />
           <p className="prevenda-lead">
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto numa das 200 licenças
+            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto durante 12 mensalidades numa das 200 licenças
             reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
             Garantes a tua licença com uma pré-reserva de 100 €.
           </p>
@@ -149,7 +150,7 @@ export default function PreVenda() {
               transition={{ delay: 0.15 }}
             >
               <span>50%</span>
-              <small>de desconto nessas licenças</small>
+              <small>de desconto nas primeiras 12 mensalidades</small>
             </motion.div>
             <motion.div
               className="prevenda-oferta-num prevenda-oferta-num--formacao"
@@ -164,26 +165,28 @@ export default function PreVenda() {
           </div>
           <p className="prevenda-porque"><b>Porquê só 200 licenças?</b> Nas primeiras 200 agências, a configuração é feita diretamente pela nossa equipa, com acompanhamento e formação. Para garantir essa qualidade, a pré-venda fica limitada a 200 licenças. Depois do lançamento, abrimos novas licenças a cada trimestre, conforme a equipa consegue acompanhar mais agências.</p>
           <motion.div
-            className="prevenda-reserva"
+            className="prevenda-reserva prevenda-reserva--explicada"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.45 }}
           >
+            <p className="prevenda-reserva-titulo">Todas as agências que fizerem a pré-reserva de 100 € têm <b>50% de desconto durante 12 mensalidades</b>: um ano a pagar 149,50 € por mês em vez de 299 €.</p>
+            <div className="prevenda-reserva-linha">
             <div className="prevenda-reserva-valor">
               <small>Pré-reserva</small>
               <span>100 €</span>
               <Mensalidade />
             </div>
             <ul className="prevenda-reserva-condicoes">
-              <li>Garante uma das 200 licenças a 50%</li>
-              <li>Descontada na primeira mensalidade</li>
+              <li>50% de desconto durante 12 mensalidades, ou seja, um ano</li>
+              <li>Os 100 € são descontados na primeira mensalidade</li>
               <li>Reembolsável após o dia do lançamento</li>
             </ul>
+            </div>
           </motion.div>
-          <Contagem />
+          <Formulario />
         </div>
-        <Formulario />
       </div>
     </section>
   )

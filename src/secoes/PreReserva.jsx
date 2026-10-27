@@ -19,7 +19,7 @@ export default function PreReserva({ aoAcabar }) {
           <Mensalidade />
         </div>
         <ul>
-          <li>Garante uma das 200 licenças a 50%</li>
+          <li>50% de desconto durante 12 mensalidades</li>
           <li>Descontada na primeira mensalidade</li>
           <li>Reembolsável após o dia do lançamento</li>
         </ul>
