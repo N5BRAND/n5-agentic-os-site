@@ -5,6 +5,9 @@ export const LINK_PRE_RESERVA = 'https://buy.stripe.com/cNibJ31OFc4DbUr3DUgrS09'
 
 export const VALOR_PRE_RESERVA = '100 €'
 
+/* valor em número, para os eventos do píxel */
+export const VALOR_EUROS = parseFloat(VALOR_PRE_RESERVA)
+
 /* mensalidade no lançamento, mostrada ao lado da pré-reserva */
 export const MENSALIDADE = { normal: '299 €', desconto: 50, comDesconto: '149,50 €' }
 

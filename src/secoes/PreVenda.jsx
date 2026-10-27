@@ -6,6 +6,7 @@ import { codificar } from '../logica/netlify.js'
 import Prioridades from './Prioridades.jsx'
 import PreReserva from './PreReserva.jsx'
 import Mensalidade from './Mensalidade.jsx'
+import { evento } from '../legal/pixel.js'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -68,6 +69,7 @@ function Formulario() {
         body: codificar({ 'form-name': 'pre-venda', ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
+      evento('Lead')
       setEstado('prioridades')
     } catch {
       setEstado('falhou')
