@@ -1,5 +1,6 @@
 import Topo from './secoes/Topo.jsx'
 import Hero from './secoes/Hero.jsx'
+import Video from './secoes/Video.jsx'
 import Eixos from './secoes/Eixos.jsx'
 import Demo from './demo/Demo.jsx'
 import Ecras from './secoes/Ecras.jsx'
@@ -16,6 +17,7 @@ export default function App() {
       <Topo />
       <main>
         <Hero />
+        <Video />
         <Eixos />
         <Demo />
         <Ecras />
