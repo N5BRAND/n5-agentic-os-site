@@ -8,6 +8,7 @@ import Perfis from './secoes/Perfis.jsx'
 import Conformidade from './secoes/Conformidade.jsx'
 import PreVenda from './secoes/PreVenda.jsx'
 import Rodape from './secoes/Rodape.jsx'
+import AvisoCookies from './legal/AvisoCookies.jsx'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <PreVenda />
       </main>
       <Rodape />
+      <AvisoCookies />
     </>
   )
 }
