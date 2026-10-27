@@ -18,7 +18,7 @@ function Confirmada() {
         <motion.div className="confirmada-texto" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
           <p className="eyebrow">Pré-reserva confirmada</p>
           <h1>A tua licença está garantida.</h1>
-          <p>Uma das 200 licenças é tua, com 50% de desconto nas primeiras 12 mensalidades e as 12 formações por ano incluídas. Os 100 € saem da primeira mensalidade e são reembolsáveis após o dia do lançamento.</p>
+          <p>Uma das 25 licenças é tua, com 50% de desconto nas primeiras 12 mensalidades e as 12 formações por ano incluídas. Os 100 € saem da primeira mensalidade e são reembolsáveis após o dia do lançamento.</p>
           <p>Se escolheste Multibanco, a licença fica garantida assim que pagares a referência. Antes de 1 de dezembro enviamos-te por email os próximos passos.</p>
           <a className="botao" href="/">Voltar ao site</a>
         </motion.div>

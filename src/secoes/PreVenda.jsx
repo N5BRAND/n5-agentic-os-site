@@ -50,7 +50,8 @@ function Campo({ nome, rotulo, erro, ...resto }) {
 function Formulario() {
   const [d, setD] = useState(VAZIO)
   const [erros, setErros] = useState({})
-  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | prioridades | pre-reserva | enviado | falhou
+  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | prioridades | pre-reserva | enviado | demonstracao | falhou
+  const [pedido, setPedido] = useState('pre-venda') // pre-venda | demonstracao
   const muda = e => {
     const { name, value, type, checked } = e.target
     setD(x => ({ ...x, [name]: type === 'checkbox' ? checked : value }))
@@ -58,7 +59,10 @@ function Formulario() {
 
   const enviar = async e => {
     e.preventDefault()
-    const v = validarInscricao(d)
+    /* o botão de baixo pede uma demonstração ao comercial em vez de seguir para a pré-reserva */
+    const tipo = e.nativeEvent.submitter?.value === 'demonstracao' ? 'demonstracao' : 'pre-venda'
+    setPedido(tipo)
+    const v = validarInscricao(d, { telefoneObrigatorio: tipo === 'demonstracao' })
     setErros(v.erros)
     if (!v.ok) return
     setEstado('a-enviar')
@@ -66,11 +70,11 @@ function Formulario() {
       const r = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: codificar({ 'form-name': 'pre-venda', ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
+        body: codificar({ 'form-name': tipo, ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
-      evento('Lead')
-      setEstado('prioridades')
+      evento('Lead', tipo === 'demonstracao' ? { content_category: 'demonstracao' } : {})
+      setEstado(tipo === 'demonstracao' ? 'demonstracao' : 'prioridades')
     } catch {
       setEstado('falhou')
     }
@@ -85,6 +89,13 @@ function Formulario() {
             <h3>Estás na lista.</h3>
             <p>Quando a pré-venda abrir, és dos primeiros a saber. Dá cá cinco 🖐️</p>
           </motion.div>
+        ) : estado === 'demonstracao' ? (
+          <motion.div key="demo" className="prevenda-ok" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
+            <motion.span className="prevenda-ok-icone" initial={{ scale: 0, rotate: -40 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.1 }}>✓</motion.span>
+            <h3>Pedido recebido.</h3>
+            <p>O nosso comercial vai ligar-te para marcar uma demonstração do N5 Imobiliário e ver contigo as opções para a tua agência.</p>
+            <button type="button" className="prioridades-saltar" onClick={() => setEstado('prioridades')}>Prefiro garantir já a minha licença</button>
+          </motion.div>
         ) : estado === 'prioridades' ? (
           <Prioridades key="prioridades" email={d.email.trim()} titulo="O que é mais importante para a tua agência?" aoAcabar={() => setEstado('pre-reserva')} />
         ) : estado === 'pre-reserva' ? (
@@ -97,7 +108,7 @@ function Formulario() {
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
               <Campo nome="email" rotulo="Email" type="email" value={d.email} onChange={muda} erro={erros.email} autoComplete="email" />
-              <Campo nome="telefone" rotulo="Telefone (opcional)" type="tel" value={d.telefone} onChange={muda} erro={erros.telefone} autoComplete="tel" />
+              <Campo nome="telefone" rotulo="Telefone (obrigatório para a demonstração)" type="tel" value={d.telefone} onChange={muda} erro={erros.telefone} autoComplete="tel" />
               <Campo nome="agencia" rotulo="Agência" value={d.agencia} onChange={muda} erro={erros.agencia} autoComplete="organization" />
               <Campo nome="ami" rotulo="Licença AMI" placeholder="Ex.: 12345" inputMode="numeric" value={d.ami} onChange={muda} erro={erros.ami} />
               <Campo nome="consultores" rotulo="Nº de consultores (opcional)" inputMode="numeric" value={d.consultores} onChange={muda} erro={erros.consultores} />
@@ -107,8 +118,11 @@ function Formulario() {
               <span>Autorizo a Nº 5 a guardar estes dados e a contactar-me sobre a pré-venda do N5 Imobiliário, nos termos da <a href="/privacidade/" target="_blank" rel="noreferrer">política de privacidade</a>.</span>
             </label>
             {erros.consentimento && <small className="erro-solto">{erros.consentimento}</small>}
-            <button className="botao prevenda-botao" type="submit" disabled={estado === 'a-enviar'}>
-              {estado === 'a-enviar' ? 'A enviar…' : 'Quero entrar na pré-venda'}
+            <button className="botao prevenda-botao" type="submit" value="pre-venda" disabled={estado === 'a-enviar'}>
+              {estado === 'a-enviar' && pedido === 'pre-venda' ? 'A enviar…' : 'Quero entrar na pré-venda'}
+            </button>
+            <button className="botao botao--linha prevenda-botao prevenda-botao--demo" type="submit" value="demonstracao" disabled={estado === 'a-enviar'}>
+              {estado === 'a-enviar' && pedido === 'demonstracao' ? 'A enviar…' : 'Quero primeiro explorar as minhas opções com a equipa Nº5'}
             </button>
             {estado === 'falhou' && <p className="erro-solto">Não conseguimos enviar. Tenta outra vez daqui a pouco.</p>}
           </motion.form>
@@ -128,7 +142,7 @@ export default function PreVenda() {
           <Contagem />
           <p className="prevenda-lead">
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto durante 12 mensalidades numa das 200 licenças
+            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto durante 12 mensalidades numa das 25 licenças
             reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
             Garantes a tua licença com uma pré-reserva de 100 €.
           </p>
@@ -139,7 +153,7 @@ export default function PreVenda() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span>200</span>
+              <span>25</span>
               <small>licenças reservadas</small>
             </motion.div>
             <motion.div
@@ -163,7 +177,7 @@ export default function PreVenda() {
               <small>formações por ano sobre o sistema, incluídas</small>
             </motion.div>
           </div>
-          <p className="prevenda-porque"><b>Porquê só 200 licenças?</b> Nas primeiras 200 agências, a configuração é feita diretamente pela nossa equipa, com acompanhamento e formação. Para garantir essa qualidade, a pré-venda fica limitada a 200 licenças. Depois do lançamento, abrimos novas licenças a cada trimestre, conforme a equipa consegue acompanhar mais agências.</p>
+          <p className="prevenda-porque"><b>Porquê só 25 licenças?</b> Nas primeiras 25 agências, a configuração é feita diretamente pela nossa equipa, com acompanhamento e formação. Para garantir essa qualidade, a pré-venda fica limitada a 25 licenças. Depois do lançamento, abrimos novas licenças a cada trimestre, conforme a equipa consegue acompanhar mais agências.</p>
           <motion.div
             className="prevenda-reserva prevenda-reserva--explicada"
             initial={{ opacity: 0, y: 20 }}

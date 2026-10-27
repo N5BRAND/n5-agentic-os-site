@@ -26,6 +26,11 @@ const FORMULARIOS = {
     etiquetas: [ETIQUETA, 'lista-pre-venda'],
     nota: [`Inscrição na pré-venda do ${PRODUTO}.`, `Licença AMI: ${d.ami || 'não indicada'}`, `Consultores: ${d.consultores || 'não indicado'}`].join('\n'),
   }),
+  demonstracao: d => ({
+    contacto: { ...nomeSeparado(d.nome), email: d.email, phone: telefone(d.telefone), companyName: d.agencia, source: `Site ${PRODUTO}` },
+    etiquetas: [ETIQUETA, 'pedido-demonstracao'],
+    nota: [`Pedido de demonstração do ${PRODUTO}: quer explorar as opções com a equipa antes de reservar.`, `Licença AMI: ${d.ami || 'não indicada'}`, `Consultores: ${d.consultores || 'não indicado'}`].join('\n'),
+  }),
   prioridades: d => ({
     contacto: { email: d.email },
     etiquetas: [ETIQUETA, 'prioridades-respondidas'],

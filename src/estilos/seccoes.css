@@ -335,3 +335,7 @@
 @media (max-width: 600px) {
   .prevenda-reserva-linha { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
+
+/* segundo botão: pedir uma demonstração ao comercial antes de reservar */
+.prevenda-botao--demo { margin-top: -6px; color: var(--tinta); font-size: 15px; }
+.prevenda-botao--demo:hover { background: var(--dourado); color: #fff; box-shadow: inset 0 0 0 1.5px var(--dourado); }

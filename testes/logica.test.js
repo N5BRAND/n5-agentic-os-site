@@ -41,6 +41,15 @@ describe('passoDe', () => {
   })
 })
 
+describe('pedido de demonstração', () => {
+  it('obriga ao telefone só quando se pede a demonstração', () => {
+    const d = { nome: 'Rui', email: 'rui@agencia.pt', telefone: '', agencia: 'A', ami: '4719', consultores: '', consentimento: true }
+    expect(validarInscricao(d).ok).toBe(true)
+    expect(validarInscricao(d, { telefoneObrigatorio: true }).erros.telefone).toBeTruthy()
+    expect(validarInscricao({ ...d, telefone: '912345678' }, { telefoneObrigatorio: true }).ok).toBe(true)
+  })
+})
+
 describe('validarInscricao', () => {
   const base = { nome: 'Ana', email: 'ana@agencia.pt', agencia: 'Casa Azul', ami: '12345', telefone: '', consultores: '', consentimento: true }
 

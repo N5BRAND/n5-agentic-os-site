@@ -10,6 +10,14 @@ describe('GHL', () => {
     expect(r.nota).toContain('Consultores: não indicado')
   })
 
+  it('passa o pedido de demonstração com etiqueta própria para o comercial', () => {
+    const r = paraGhl('demonstracao', { nome: 'Rui', email: 'rui@agencia.pt', telefone: '912345678', agencia: 'A', ami: '4719', consultores: '8' })
+    expect(r.etiquetas).toEqual(['n5-imobiliario', 'pedido-demonstracao'])
+    expect(r.contacto.phone).toBe('+351912345678')
+    expect(r.nota).toContain('Pedido de demonstração')
+    expect(r.nota).toContain('Licença AMI: 4719')
+  })
+
   it('passa as prioridades numa nota', () => {
     const r = paraGhl('prioridades', { email: 'a@b.pt', prioridades: 'Responder às leads; Organizar o dia' })
     expect(r.contacto).toEqual({ email: 'a@b.pt' })
