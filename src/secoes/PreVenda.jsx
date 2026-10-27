@@ -4,6 +4,7 @@ import { LANCAMENTO, tempoAte } from '../logica/contagem.js'
 import { validarInscricao, normalizarAmi } from '../logica/validar.js'
 import { codificar } from '../logica/netlify.js'
 import Prioridades from './Prioridades.jsx'
+import PreReserva from './PreReserva.jsx'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -47,7 +48,7 @@ function Campo({ nome, rotulo, erro, ...resto }) {
 function Formulario() {
   const [d, setD] = useState(VAZIO)
   const [erros, setErros] = useState({})
-  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | prioridades | enviado | falhou
+  const [estado, setEstado] = useState('pronto') // pronto | a-enviar | prioridades | pre-reserva | enviado | falhou
   const muda = e => {
     const { name, value, type, checked } = e.target
     setD(x => ({ ...x, [name]: type === 'checkbox' ? checked : value }))
@@ -82,7 +83,9 @@ function Formulario() {
             <p>Quando a pré-venda abrir, és dos primeiros a saber. Dá cá cinco 🖐️</p>
           </motion.div>
         ) : estado === 'prioridades' ? (
-          <Prioridades key="prioridades" email={d.email.trim()} titulo="O que é mais importante para a tua agência?" aoAcabar={() => setEstado('enviado')} />
+          <Prioridades key="prioridades" email={d.email.trim()} titulo="O que é mais importante para a tua agência?" aoAcabar={() => setEstado('pre-reserva')} />
+        ) : estado === 'pre-reserva' ? (
+          <PreReserva key="pre-reserva" aoAcabar={() => setEstado('enviado')} />
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
             <h3>Entra na lista de espera</h3>
