@@ -147,13 +147,13 @@ export default function PreVenda() {
           {ESGOTADO ? (
             <p className="prevenda-lead">
               Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-              As 25 licenças da pré-venda, com 50% de desconto durante 12 mensalidades, já esgotaram. Abrimos novas licenças
+              As 25 licenças da pré-venda, com 50% de desconto na primeira mensalidade, já esgotaram. Abrimos novas licenças
               a cada trimestre, conforme a equipa consegue acompanhar mais agências: deixa o contacto e a tua agência fica com prioridade nas próximas.
             </p>
           ) : (
           <p className="prevenda-lead">
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto durante 12 mensalidades numa das 25 licenças
+            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto na primeira mensalidade numa das 25 licenças
             reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
             Garantes a tua licença com uma pré-reserva de 100 €.
           </p>
@@ -176,7 +176,7 @@ export default function PreVenda() {
               transition={{ delay: 0.15 }}
             >
               <span>{ESGOTADO ? '1:1' : '50%'}</span>
-              <small>{ESGOTADO ? 'demonstração com a nossa equipa, quando quiseres' : 'de desconto nas primeiras 12 mensalidades'}</small>
+              <small>{ESGOTADO ? 'demonstração com a nossa equipa, quando quiseres' : 'de desconto na primeira mensalidade'}</small>
             </motion.div>
             {!ESGOTADO && <motion.div
               className="prevenda-oferta-num prevenda-oferta-num--formacao"
@@ -197,7 +197,7 @@ export default function PreVenda() {
             viewport={{ once: true }}
             transition={{ delay: 0.45 }}
           >
-            <p className="prevenda-reserva-titulo">Todas as agências que fizerem a pré-reserva de 100 € têm <b>50% de desconto durante 12 mensalidades</b>: um ano a pagar 149,50 € por mês em vez de 299 €.</p>
+            <p className="prevenda-reserva-titulo">Todas as agências que fizerem a pré-reserva de 100 € têm <b>50% de desconto na primeira mensalidade</b>: 149,50 € em vez de 299 €. Com os 100 € descontados, pagas 49,50 € no 1.º mês e 299 € a partir do 2.º.</p>
             <div className="prevenda-reserva-linha">
             <div className="prevenda-reserva-valor">
               <small>Pré-reserva</small>
@@ -205,7 +205,7 @@ export default function PreVenda() {
               <Mensalidade />
             </div>
             <ul className="prevenda-reserva-condicoes">
-              <li>50% de desconto durante 12 mensalidades, ou seja, um ano</li>
+              <li>50% de desconto na primeira mensalidade</li>
               <li>Os 100 € são descontados na primeira mensalidade</li>
               <li>Reembolsável após o dia do lançamento</li>
             </ul>

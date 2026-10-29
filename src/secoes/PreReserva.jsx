@@ -19,8 +19,8 @@ export default function PreReserva({ aoAcabar }) {
           <Mensalidade />
         </div>
         <ul>
-          <li>50% de desconto durante 12 mensalidades</li>
-          <li>Descontada na primeira mensalidade</li>
+          <li>50% de desconto na primeira mensalidade</li>
+          <li>Descontada na primeira mensalidade: pagas 49,50 € no 1.º mês</li>
           <li>Reembolsável após o dia do lançamento</li>
         </ul>
       </div>
