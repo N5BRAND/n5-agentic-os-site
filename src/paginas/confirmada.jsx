@@ -2,7 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { MotionConfig, motion } from 'motion/react'
 import Simbolo from '../marca/Simbolo.jsx'
-import { iniciarPixel, evento } from '../legal/pixel.js'
+import { iniciarPixel, evento, idDaCompra } from '../legal/pixel.js'
 import { VALOR_EUROS } from '../logica/pagamento.js'
 import '../estilos/fontes.js'
 import '../estilos/base.css'
@@ -27,11 +27,14 @@ function Confirmada() {
   )
 }
 
-/* Purchase uma vez por sessão, mesmo que a página seja recarregada */
+/* Purchase uma vez por sessão, mesmo que a página seja recarregada.
+   Só com o id da sessão da Stripe no endereço (o Payment Link volta com ?session_id={CHECKOUT_SESSION_ID}), que é
+   também o id do evento: quem abre a página sem ter passado pela Stripe não conta como compra. */
+const COMPRA = idDaCompra()
 iniciarPixel()
 try {
-  if (!sessionStorage.getItem('n5-compra-registada')) {
-    evento('Purchase', { value: VALOR_EUROS, currency: 'EUR' })
+  if (COMPRA && !sessionStorage.getItem('n5-compra-registada')) {
+    evento('Purchase', { value: VALOR_EUROS, currency: 'EUR' }, COMPRA)
     sessionStorage.setItem('n5-compra-registada', '1')
   }
 } catch { /* sem armazenamento: não regista */ }
