@@ -8,6 +8,7 @@ import PreReserva from './PreReserva.jsx'
 import Mensalidade from './Mensalidade.jsx'
 import { ESGOTADO } from '../logica/pagamento.js'
 import { evento, novoIdEvento } from '../legal/pixel.js'
+import { emTeste } from '../legal/teste.js'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -74,7 +75,7 @@ function Formulario() {
       const r = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: codificar({ 'form-name': tipo, ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
+        body: codificar({ 'form-name': tipo, ...d, ami: normalizarAmi(d.ami), teste: emTeste() ? '1' : '', 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
       evento('Lead', tipo === 'demonstracao' ? { content_category: 'demonstracao' } : {}, novoIdEvento())
