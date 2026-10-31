@@ -20,8 +20,8 @@ export default function PreReserva({ aoAcabar }) {
 
   return (
     <motion.div key="pre-reserva" className="pre-reserva" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-      <p className="prioridades-feito">✓ Estás na lista.</p>
-      <h3>Último passo: garante a tua licença</h3>
+      <p className="prioridades-feito">✓ Dados da agência guardados.</p>
+      <h3>Último passo: a pré-reserva da licença</h3>
       <div className="pre-reserva-valor">
         <div className="pre-reserva-preco">
           <span>{VALOR_PRE_RESERVA}</span>

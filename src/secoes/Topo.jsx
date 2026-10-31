@@ -25,7 +25,7 @@ export default function Topo() {
           <a href="#sistema">O sistema</a>
           <a href="#pre-venda">{ESGOTADO ? 'Próximas licenças' : 'Pré-venda'}</a>
         </nav>
-        <a href="#pre-venda" className="botao topo-cta">Lista de espera</a>
+        <a href="#pre-venda" className="botao topo-cta">{ESGOTADO ? 'Próximas licenças' : 'Reservar licença'}</a>
       </div>
     </motion.header>
   )

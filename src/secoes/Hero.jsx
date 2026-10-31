@@ -74,7 +74,7 @@ export default function Hero() {
             Do primeiro contacto à comissão paga, num só sítio. Os agentes de IA tratam do trabalho repetitivo. A tua equipa fecha negócios.
           </motion.p>
           <motion.div className="hero-botoes" {...subir(0.5)}>
-            <a href="#pre-venda" className="botao">{ESGOTADO ? 'Entrar na lista das próximas licenças' : 'Entrar na lista da pré-venda'}</a>
+            <a href="#pre-venda" className="botao">{ESGOTADO ? 'Entrar na lista das próximas licenças' : 'Reservar a licença da agência'}</a>
             <a href="#demo" className="botao botao--linha">Ver como funciona</a>
           </motion.div>
         </div>

@@ -91,15 +91,15 @@ function Formulario() {
         {estado === 'enviado' ? (
           <motion.div key="ok" className="prevenda-ok" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
             <motion.span className="prevenda-ok-icone" initial={{ scale: 0, rotate: -40 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.1 }}>✓</motion.span>
-            <h3>{ESGOTADO ? 'Ficas com prioridade.' : 'Estás na lista.'}</h3>
-            <p>{ESGOTADO ? 'Quando abrirmos as licenças do próximo trimestre, a tua agência é das primeiras a saber. Dá cá cinco 🖐️' : 'Quando a pré-venda abrir, és dos primeiros a saber. Dá cá cinco 🖐️'}</p>
+            <h3>{ESGOTADO ? 'Ficas com prioridade.' : 'A tua agência está registada.'}</h3>
+            <p>{ESGOTADO ? 'Quando abrirmos as licenças do próximo trimestre, a tua agência é das primeiras a saber. Dá cá cinco 🖐️' : 'Enviamos-te por email o link da pré-reserva assim que estiver ativo. Dá cá cinco 🖐️'}</p>
           </motion.div>
         ) : estado === 'demonstracao' ? (
           <motion.div key="demo" className="prevenda-ok" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
             <motion.span className="prevenda-ok-icone" initial={{ scale: 0, rotate: -40 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.1 }}>✓</motion.span>
             <h3>Pedido recebido.</h3>
             <p>O nosso comercial vai ligar-te para marcar uma demonstração do N5 Imobiliário e ver contigo as opções para a tua agência.</p>
-            {!ESGOTADO && <button type="button" className="prioridades-saltar" onClick={() => setEstado('prioridades')}>Prefiro garantir já a minha licença</button>}
+            {!ESGOTADO && <button type="button" className="prioridades-saltar" onClick={() => setEstado('prioridades')}>Prefiro reservar já a licença (pré-reserva de 100 €)</button>}
           </motion.div>
         ) : estado === 'prioridades' ? (
           <Prioridades key="prioridades" email={d.email.trim()} titulo="O que é mais importante para a tua agência?" aoAcabar={() => setEstado(ESGOTADO ? 'enviado' : 'pre-reserva')} />
@@ -107,8 +107,8 @@ function Formulario() {
           <PreReserva key="pre-reserva" aoAcabar={() => setEstado('enviado')} />
         ) : (
           <motion.form key="form" name="pre-venda" onSubmit={enviar} noValidate exit={{ opacity: 0, y: -10 }}>
-            <h3>{ESGOTADO ? 'Fica com prioridade nas próximas licenças' : 'Entra na lista de espera'}</h3>
-            <p className="prevenda-form-sub">A licença AMI garante que a tua agência fica registada.</p>
+            <h3>{ESGOTADO ? 'Fica com prioridade nas próximas licenças' : 'Reserva a licença da tua agência'}</h3>
+            <p className="prevenda-form-sub">{ESGOTADO ? 'A licença AMI garante que a tua agência fica registada.' : 'Primeiro os dados da agência, com a licença AMI. A seguir, o pagamento da pré-reserva de 100 €.'}</p>
             <p className="so-leitores"><label>Não preenchas: <input name="empresa-site" tabIndex={-1} autoComplete="off" /></label></p>
             <div className="prevenda-campos">
               <Campo nome="nome" rotulo="Nome" value={d.nome} onChange={muda} erro={erros.nome} autoComplete="name" />
@@ -124,11 +124,12 @@ function Formulario() {
             </label>
             {erros.consentimento && <small className="erro-solto">{erros.consentimento}</small>}
             <button className="botao prevenda-botao" type="submit" value={PRINCIPAL} disabled={estado === 'a-enviar'}>
-              {estado === 'a-enviar' && pedido === PRINCIPAL ? 'A enviar…' : ESGOTADO ? 'Quero prioridade nas próximas licenças' : 'Quero entrar na pré-venda'}
+              {estado === 'a-enviar' && pedido === PRINCIPAL ? 'A enviar…' : ESGOTADO ? 'Quero prioridade nas próximas licenças' : 'Continuar para o pagamento da pré-reserva'}
             </button>
             <button className="botao botao--linha prevenda-botao prevenda-botao--demo" type="submit" value="demonstracao" disabled={estado === 'a-enviar'}>
-              {estado === 'a-enviar' && pedido === 'demonstracao' ? 'A enviar…' : 'Quero primeiro explorar as minhas opções com a equipa Nº5'}
+              {estado === 'a-enviar' && pedido === 'demonstracao' ? 'A enviar…' : 'Pedir uma demonstração'}
             </button>
+            <p className="prevenda-demo-nota">Pedir uma demonstração só regista o pedido: o nosso comercial liga-te para a marcar. Não há pagamento.</p>
             {estado === 'falhou' && <p className="erro-solto">Não conseguimos enviar. Tenta outra vez daqui a pouco.</p>}
           </motion.form>
         )}
@@ -154,9 +155,9 @@ export default function PreVenda() {
           ) : (
           <p className="prevenda-lead">
             Comercial, consultor, crédito, jurídico, financeiro e broker: tudo lançado no mesmo dia.
-            Antes disso, abrimos a pré-venda a quem está na lista de espera: 50% de desconto na primeira mensalidade numa das 25 licenças
+            A pré-venda está aberta: 50% de desconto na primeira mensalidade numa das 25 licenças
             reservadas e um pacote de 12 formações anuais sobre o sistema, para toda a equipa tirar partido dele.
-            Garantes a tua licença com uma pré-reserva de 100 €.
+            Garantes a licença da tua agência com uma pré-reserva de 100 €. Preferes ver primeiro? Pede uma demonstração.
           </p>
           )}
           <div className={`prevenda-oferta ${ESGOTADO ? 'prevenda-oferta--duas' : ''}`}>
