@@ -7,7 +7,7 @@ import Prioridades from './Prioridades.jsx'
 import PreReserva from './PreReserva.jsx'
 import Mensalidade from './Mensalidade.jsx'
 import { ESGOTADO } from '../logica/pagamento.js'
-import { evento } from '../legal/pixel.js'
+import { evento, novoIdEvento } from '../legal/pixel.js'
 
 const VAZIO = { nome: '', email: '', telefone: '', agencia: '', ami: '', consultores: '', consentimento: false }
 
@@ -77,7 +77,7 @@ function Formulario() {
         body: codificar({ 'form-name': tipo, ...d, ami: normalizarAmi(d.ami), 'empresa-site': e.target.elements['empresa-site'].value }),
       })
       if (!r.ok) throw new Error(String(r.status))
-      evento('Lead', tipo === 'demonstracao' ? { content_category: 'demonstracao' } : {})
+      evento('Lead', tipo === 'demonstracao' ? { content_category: 'demonstracao' } : {}, novoIdEvento())
       setEstado(tipo === 'demonstracao' ? 'demonstracao' : 'prioridades')
     } catch {
       setEstado('falhou')
