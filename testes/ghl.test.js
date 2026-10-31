@@ -2,6 +2,12 @@ import { describe, it, expect, vi } from 'vitest'
 import { paraGhl, telefone, enviarParaGhl } from '../netlify/ghl.js'
 
 describe('GHL', () => {
+  it('uma inscrição de teste fica só com a etiqueta «teste», fora da lista e dos workflows', () => {
+    const r = paraGhl('pre-venda', { nome: 'Teste', email: 'teste@exemplo.pt', teste: '1' })
+    expect(r.etiquetas).toEqual(['n5-imobiliario', 'teste'])
+    expect(r.nota.startsWith('Inscrição de teste.')).toBe(true)
+  })
+
   it('passa a inscrição da pré-venda com a licença AMI na nota', () => {
     const r = paraGhl('pre-venda', { nome: 'Ana Sousa Lima', email: 'ana@agencia.pt', telefone: '912 345 678', agencia: 'Agência Lima', ami: '12345', consultores: '' })
     expect(r.contacto).toEqual({ firstName: 'Ana', lastName: 'Sousa Lima', email: 'ana@agencia.pt', phone: '+351912345678', companyName: 'Agência Lima', source: 'Site N5 Imobiliário' })
